@@ -1,0 +1,7 @@
+*.docx
+design_images/
+ob_images/
+node_modules/
+build_quiz.js
+parse_and_validate.js
+*.py

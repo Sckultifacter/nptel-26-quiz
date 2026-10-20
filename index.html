@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NPTEL Exam Preparation &mdash; Design &amp; Organisational Behaviour</title>
+  <meta name="description" content="Interactive, 100% offline quiz preparation portal for NPTEL Design and Organisational Behaviour exams. Complete 240 questions with instant feedback."/>
+  <style>
+    /* ==========================================================================
+       MODERN DESIGN SYSTEM & TOKENS (100% SELF-CONTAINED & OFFLINE)
+       ========================================================================== */
+    :root {
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --bg-dark: #0a0e17;
+      --bg-card: #121826;
+      --bg-card-hover: #182236;
+      --bg-surface: #1e293b;
+      --border-color: #26344d;
+      --border-hover: #3b5073;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-faint: #64748b;
+      
+      --accent-design: #8b5cf6;
+      --accent-design-grad: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --accent-ob: #06b6d4;
+      --accent-ob-grad: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+      
+      --color-correct: #10b981;
+      --color-correct-bg: rgba(16, 185, 129, 0.14);
+      --color-correct-border: rgba(16, 185, 129, 0.45);
+      --color-incorrect: #f43f5e;
+      --color-incorrect-bg: rgba(244, 63, 94, 0.14);
+      --color-incorrect-border: rgba(244, 63, 94, 0.45);
+      --color-flag: #f59e0b;
+      --color-flag-bg: rgba(245, 158, 11, 0.16);
+      --color-flag-border: rgba(245, 158, 11, 0.5);
+      --color-active: #38bdf8;
+      
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-lg: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* Ambient background grid */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.09) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(14, 165, 233, 0.09) 0%, transparent 40%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ==========================================================================
+       SCREEN 1: HOME & COURSE SELECTION
+       ========================================================================== */
+    #home-screen {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 50px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #a5b4fc;
+      margin-bottom: 24px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    .home-title {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .home-subtitle {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 720px;
+      margin-bottom: 48px;
+      line-height: 1.6;
+    }
+
+    .course-cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      width: 100%;
+      max-width: 960px;
+    }
+
+    .course-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 40px 32px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .course-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      transition: var(--transition);
+    }
+
+    .course-card.design-card::before {
+      background: var(--accent-design-grad);
+    }
+
+    .course-card.ob-card::before {
+      background: var(--accent-ob-grad);
+    }
+
+    .course-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-lg);
+      background: var(--bg-card-hover);
+    }
+
+    .course-card.design-card:hover {
+      border-color: rgba(139, 92, 246, 0.4);
+      box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.25);
+    }
+
+    .course-card.ob-card:hover {
+      border-color: rgba(14, 165, 233, 0.4);
+      box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.25);
+    }
+
+    .card-icon-wrapper {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 24px;
+    }
+
+    .design-card .card-icon-wrapper {
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      color: #c4b5fd;
+    }
+
+    .ob-card .card-icon-wrapper {
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      color: #7dd3fc;
+    }
+
+    .card-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+
+    .card-stats {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .stat-tag {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .card-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #ffffff;
+      width: 100%;
+      transition: var(--transition);
+    }
+
+    .design-card .card-btn {
+      background: var(--accent-design-grad);
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+    }
+
+    .ob-card .card-btn {
+      background: var(--accent-ob-grad);
+      box-shadow: 0 4px 14px rgba(14, 165, 233, 0.35);
+    }
+
+    .card-btn:hover {
+      filter: brightness(1.1);
+      transform: scale(1.02);
+    }
+
+    /* Key Features strip */
+    .features-strip {
+      margin-top: 54px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 960px;
+    }
+
+    .feature-item {
+      background: rgba(18, 24, 38, 0.6);
+      border: 1px solid rgba(38, 52, 77, 0.6);
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-align: left;
+    }
+
+    .feature-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .feature-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .feature-text strong {
+      display: block;
+      color: var(--text-main);
+      font-size: 0.94rem;
+      margin-bottom: 2px;
+    }
+
+    /* ==========================================================================
+       SCREEN 2: QUIZ SHELL
+       ========================================================================== */
+    #quiz-screen {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .quiz-navbar {
+      background: rgba(18, 24, 38, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .quiz-nav-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-left, .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-nav {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-nav:hover {
+      background: var(--border-color);
+      color: #ffffff;
+      border-color: var(--border-hover);
+    }
+
+    .course-badge-pill {
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-design {
+      background: rgba(139, 92, 246, 0.2);
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      color: #c4b5fd;
+    }
+
+    .badge-ob {
+      background: rgba(14, 165, 233, 0.2);
+      border: 1px solid rgba(14, 165, 233, 0.4);
+      color: #7dd3fc;
+    }
+
+    .timer-badge {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-color);
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: #e2e8f0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .score-badge {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Overall Progress Bar */
+    .progress-track {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      position: relative;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #6366f1, #06b6d4, #10b981);
+      transition: width 0.3s ease;
+    }
+
+    /* Main Quiz Layout: Center Question Card + Side Palette */
+    .quiz-layout-container {
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 28px;
+      flex-grow: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .quiz-layout-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Question Panel */
+    .question-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .question-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+    }
+
+    .q-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 16px;
+    }
+
+    .q-number-pill {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .q-type-pill {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: rgba(148, 163, 184, 0.15);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .q-type-pill.multi {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .btn-flag {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-flag:hover {
+      background: var(--bg-surface);
+      color: #ffffff;
+    }
+
+    .btn-flag.flagged {
+      background: var(--color-flag-bg);
+      border-color: var(--color-flag-border);
+      color: var(--color-flag);
+    }
+
+    .question-prompt {
+      font-size: 1.16rem;
+      font-weight: 600;
+      line-height: 1.6;
+      color: #f8fafc;
+    }
+
+    /* Options List */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .option-item {
+      background: rgba(18, 24, 38, 0.7);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      cursor: pointer;
+      transition: var(--transition);
+      user-select: none;
+      position: relative;
+    }
+
+    .option-item:hover:not(.locked) {
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      transform: translateX(4px);
+    }
+
+    .option-item.selected {
+      background: rgba(99, 102, 241, 0.16);
+      border-color: #818cf8;
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.2);
+    }
+
+    .option-marker {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--border-hover);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .option-item.multi .option-marker {
+      border-radius: 6px;
+    }
+
+    .option-item.selected .option-marker {
+      background: #6366f1;
+      border-color: #6366f1;
+      color: #ffffff;
+    }
+
+    .option-text {
+      font-size: 1.02rem;
+      color: #e2e8f0;
+      line-height: 1.55;
+      flex-grow: 1;
+    }
+
+    /* Feedback states for options */
+    .option-item.correct {
+      background: var(--color-correct-bg) !important;
+      border-color: var(--color-correct) !important;
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.2) !important;
+    }
+
+    .option-item.correct .option-marker {
+      background: var(--color-correct) !important;
+      border-color: var(--color-correct) !important;
+      color: #ffffff !important;
+    }
+
+    .option-item.incorrect {
+      background: var(--color-incorrect-bg) !important;
+      border-color: var(--color-incorrect) !important;
+      box-shadow: 0 0 16px rgba(244, 63, 94, 0.2) !important;
+    }
+
+    .option-item.incorrect .option-marker {
+      background: var(--color-incorrect) !important;
+      border-color: var(--color-incorrect) !important;
+      color: #ffffff !important;
+    }
+
+    .option-item.locked {
+      cursor: default;
+    }
+
+    /* Feedback Banner below question */
+    .feedback-banner {
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .feedback-banner.is-correct {
+      background: var(--color-correct-bg);
+      border: 1px solid var(--color-correct-border);
+      color: #34d399;
+    }
+
+    .feedback-banner.is-incorrect {
+      background: var(--color-incorrect-bg);
+      border: 1px solid var(--color-incorrect-border);
+      color: #fb7185;
+    }
+
+    .feedback-icon {
+      font-size: 26px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .feedback-content h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .feedback-content p {
+      font-size: 0.94rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+
+    /* Action Controls Bar */
+    .quiz-actions-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .actions-left, .actions-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-action {
+      padding: 12px 22px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.96rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--border-color);
+      border-color: var(--border-hover);
+    }
+
+    .btn-secondary:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-submit {
+      background: var(--accent-design-grad);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .btn-finish {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    }
+
+    .btn-finish:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    /* Keyboard Shortcuts Hint */
+    .keyboard-hint {
+      font-size: 0.8rem;
+      color: var(--text-faint);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .kbd {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       QUESTION PALETTE / NUMBER GRID (1 to 120)
+       ========================================================================== */
+    .palette-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      max-height: calc(100vh - 120px);
+      position: sticky;
+      top: 88px;
+    }
+
+    .palette-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 12px;
+    }
+
+    .palette-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Palette Filter Pills */
+    .palette-filters {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .filter-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .filter-btn.active {
+      background: #6366f1;
+      border-color: #6366f1;
+      color: #ffffff;
+    }
+
+    /* Palette Grid (120 buttons) */
+    .palette-grid-scroll {
+      overflow-y: auto;
+      padding-right: 4px;
+      flex-grow: 1;
+    }
+
+    .palette-grid-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .palette-grid-scroll::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .palette-grid-scroll::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+
+    .pal-cell {
+      height: 38px;
+      border-radius: 8px;
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .pal-cell:hover {
+      border-color: var(--border-hover);
+      color: #ffffff;
+      transform: scale(1.08);
+    }
+
+    .pal-cell.active-q {
+      border-color: var(--color-active) !important;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+      color: #ffffff;
+    }
+
+    .pal-cell.correct {
+      background: var(--color-correct-bg);
+      border-color: var(--color-correct);
+      color: #34d399;
+    }
+
+    .pal-cell.incorrect {
+      background: var(--color-incorrect-bg);
+      border-color: var(--color-incorrect);
+      color: #fb7185;
+    }
+
+    .pal-cell.flagged::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-flag);
+      box-shadow: 0 0 4px var(--color-flag);
+    }
+
+    /* Palette Legend */
+    .palette-legend {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 14px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      border: 1px solid transparent;
+    }
+
+    .legend-dot.correct {
+      background: var(--color-correct-bg);
+      border-color: var(--color-correct);
+    }
+
+    .legend-dot.incorrect {
+      background: var(--color-incorrect-bg);
+      border-color: var(--color-incorrect);
+    }
+
+    .legend-dot.flagged {
+      background: var(--color-flag-bg);
+      border-color: var(--color-flag);
+    }
+
+    .legend-dot.unanswered {
+      background: var(--bg-surface);
+      border-color: var(--border-color);
+    }
+
+    /* Mobile Palette Toggle Floating Button */
+    .mobile-palette-toggle {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      background: #6366f1;
+      color: #ffffff;
+      padding: 12px 18px;
+      border-radius: 9999px;
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 1024px) {
+      .mobile-palette-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .palette-panel {
+        display: none;
+        position: fixed;
+        inset: auto 0 0 0;
+        max-height: 75vh;
+        z-index: 110;
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.7);
+        background: #0f172a;
+      }
+      .palette-panel.mobile-open {
+        display: flex;
+      }
+    }
+
+    /* ==========================================================================
+       SCREEN 3: SUMMARY & REVIEW MODE
+       ========================================================================== */
+    #results-screen {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .results-hero-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 44px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .results-hero-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #06b6d4, #8b5cf6);
+    }
+
+    .res-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      margin-bottom: 20px;
+    }
+
+    .res-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .res-subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto 36px;
+    }
+
+    .res-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .res-stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .res-stat-val {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .res-stat-val.score { color: #38bdf8; }
+    .res-stat-val.correct { color: #34d399; }
+    .res-stat-val.incorrect { color: #fb7185; }
+    .res-stat-val.time { color: #fbbf24; }
+
+    .res-stat-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .res-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Review Mode Section */
+    .review-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 18px;
+    }
+
+    .review-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .review-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .rev-filter-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .rev-filter-btn.active {
+      background: #6366f1;
+      border-color: #6366f1;
+      color: #ffffff;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .rev-item-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .rev-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .rev-item-prompt {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      line-height: 1.5;
+    }
+
+    .rev-opts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .rev-opt {
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.94rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid transparent;
+      background: rgba(15, 23, 42, 0.4);
+      color: var(--text-muted);
+    }
+
+    .rev-opt.is-correct-target {
+      background: var(--color-correct-bg);
+      border-color: var(--color-correct-border);
+      color: #34d399;
+      font-weight: 600;
+    }
+
+    .rev-opt.is-user-wrong {
+      background: var(--color-incorrect-bg);
+      border-color: var(--color-incorrect-border);
+      color: #fb7185;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       CUSTOM MODAL DIALOG (SMOOTH & POPUP-BLOCKER IMMUNE)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .modal-icon {
+      font-size: 40px;
+      margin-bottom: 4px;
+    }
+
+    .modal-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .modal-msg {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================================
+       SCREEN 1: HOME & COURSE SELECTION
+       ========================================================================= -->
+  <div id="home-screen">
+    <div class="badge-pill">
+      <span class="badge-dot"></span>
+      100% Offline Ready &bull; Friday Exam Prep
+    </div>
+    <h1 class="home-title">NPTEL Comprehensive<br/>Exam Preparation Portal</h1>
+    <p class="home-subtitle">
+      Select a course below to start an interactive 120-question quiz. Questions are randomized for each attempt, with instant feedback, flag for review, and full analytics.
+    </p>
+
+    <div class="course-cards-container">
+      <!-- Design Course Card -->
+      <div class="course-card design-card" onclick="startQuiz('design')">
+        <div>
+          <div class="card-icon-wrapper">
+            <span>🎨</span>
+          </div>
+          <h2 class="card-title">Design Course</h2>
+          <p class="card-desc">
+            Complete curriculum covering software design principles, usability engineering, HCI, spiral models, prototypes, heuristics, usability testing, and empirical evaluation.
+          </p>
+          <div class="card-stats">
+            <span class="stat-tag">🎯 120 Questions</span>
+            <span class="stat-tag">📅 Weeks 1 &ndash; 12</span>
+            <span class="stat-tag">🔀 Single &amp; Multi-choice</span>
+          </div>
+        </div>
+        <button class="card-btn">
+          Start Design Quiz
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <!-- Organisational Behaviour Course Card -->
+      <div class="course-card ob-card" onclick="startQuiz('ob')">
+        <div>
+          <div class="card-icon-wrapper">
+            <span>🧠</span>
+          </div>
+          <h2 class="card-title">Organisational Behaviour</h2>
+          <p class="card-desc">
+            Comprehensive syllabus covering perception, Big Five &amp; MBTI personality models, motivation theories (Maslow, Herzberg, McClelland), group dynamics, leadership, and change.
+          </p>
+          <div class="card-stats">
+            <span class="stat-tag">🎯 120 Questions</span>
+            <span class="stat-tag">📅 Weeks 1 &ndash; 12</span>
+            <span class="stat-tag">🔀 Randomized Order</span>
+          </div>
+        </div>
+        <button class="card-btn">
+          Start OB Quiz
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Feature highlights -->
+    <div class="features-strip">
+      <div class="feature-item">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-text">
+          <strong>Instant Feedback</strong>
+          See correct answers &amp; explanations immediately on answer submit.
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🔀</div>
+        <div class="feature-text">
+          <strong>True Randomization</strong>
+          All 120 questions are uniquely shuffled on every attempt.
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📑</div>
+        <div class="feature-text">
+          <strong>120-Question Palette</strong>
+          Jump to any question instantly and track answered/flagged status.
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📊</div>
+        <div class="feature-text">
+          <strong>In-Depth Review</strong>
+          Filter incorrect and flagged questions after finishing the quiz.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       SCREEN 2: INTERACTIVE QUIZ SHELL
+       ========================================================================= -->
+  <div id="quiz-screen" class="hidden">
+    <!-- Navbar -->
+    <header class="quiz-navbar">
+      <div class="quiz-nav-inner">
+        <div class="nav-left">
+          <button class="btn-nav" onclick="showExitModal()" title="Return to Course Selection">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Courses
+          </button>
+          <div id="active-course-badge" class="course-badge-pill badge-design">
+            <span id="course-name-text">Design Course</span>
+          </div>
+        </div>
+
+        <div class="nav-right">
+          <div class="timer-badge" title="Elapsed Time">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span id="timer-display">00:00</span>
+          </div>
+
+          <div class="score-badge" title="Live Score">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span id="live-score-display">0 / 0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top progress bar -->
+      <div class="progress-track">
+        <div id="progress-bar-fill" class="progress-bar-fill"></div>
+      </div>
+    </header>
+
+    <!-- Quiz Main Layout -->
+    <main class="quiz-layout-container">
+      <!-- Question Panel -->
+      <section class="question-panel">
+        <div class="question-card">
+          <div class="q-card-header">
+            <div class="q-number-pill">
+              <span id="q-index-label">Question 1 of 120</span>
+              <span id="q-type-badge" class="q-type-pill">Single Choice</span>
+            </div>
+            <button id="flag-btn" class="btn-flag" onclick="toggleFlagCurrentQuestion()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+              <span id="flag-text">Flag for Review</span>
+            </button>
+          </div>
+
+          <div id="q-prompt" class="question-prompt">
+            <!-- Question text injected here -->
+          </div>
+
+          <div id="options-container" class="options-grid">
+            <!-- Options injected here -->
+          </div>
+
+          <!-- Immediate Feedback Banner -->
+          <div id="feedback-banner" class="feedback-banner hidden">
+            <div id="feedback-icon" class="feedback-icon">✅</div>
+            <div class="feedback-content">
+              <h4 id="feedback-title">Correct!</h4>
+              <p id="feedback-desc">Well done! That is the correct answer.</p>
+            </div>
+          </div>
+
+          <!-- Action bar -->
+          <div class="quiz-actions-bar">
+            <div class="actions-left">
+              <button id="prev-btn" class="btn-action btn-secondary" onclick="navigateQuestion(-1)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                Previous
+              </button>
+              <button id="next-btn" class="btn-action btn-secondary" onclick="navigateQuestion(1)">
+                Next
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+
+            <div class="actions-right">
+              <button id="submit-btn" class="btn-action btn-submit" onclick="submitCurrentAnswer()">
+                Check Answer
+              </button>
+              <button id="finish-btn" class="btn-action btn-finish" onclick="showFinishModal()">
+                Submit Quiz
+              </button>
+            </div>
+          </div>
+
+          <!-- Keyboard Shortcuts tip -->
+          <div class="keyboard-hint">
+            <span>Shortcuts:</span>
+            <span><span class="kbd">1</span>-<span class="kbd">4</span> Select</span>
+            <span><span class="kbd">Enter</span> Check/Next</span>
+            <span><span class="kbd">&larr;</span>/<span class="kbd">&rarr;</span> Prev/Next</span>
+            <span><span class="kbd">F</span> Flag</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Side Question Palette (120 questions) -->
+      <aside id="palette-panel" class="palette-panel">
+        <div class="palette-header">
+          <div class="palette-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Question Palette
+          </div>
+          <span id="answered-counter" style="font-size:0.85rem;font-weight:700;color:var(--text-muted);">0 / 120</span>
+        </div>
+
+        <!-- Filter pills -->
+        <div class="palette-filters">
+          <button class="filter-btn active" onclick="filterPalette('all', this)">All (120)</button>
+          <button class="filter-btn" onclick="filterPalette('unanswered', this)">Unanswered</button>
+          <button class="filter-btn" onclick="filterPalette('answered', this)">Answered</button>
+          <button class="filter-btn" onclick="filterPalette('flagged', this)">Flagged</button>
+        </div>
+
+        <!-- Scrollable 120-cell grid -->
+        <div class="palette-grid-scroll">
+          <div id="palette-grid" class="palette-grid">
+            <!-- 120 cells generated by JS -->
+          </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="palette-legend">
+          <div class="legend-item"><span class="legend-dot correct"></span> Correct</div>
+          <div class="legend-item"><span class="legend-dot incorrect"></span> Incorrect</div>
+          <div class="legend-item"><span class="legend-dot flagged"></span> Flagged</div>
+          <div class="legend-item"><span class="legend-dot unanswered"></span> Unanswered</div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Mobile Palette Toggle Button -->
+    <button class="mobile-palette-toggle" onclick="toggleMobilePalette()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Palette (120)
+    </button>
+  </div>
+
+  <!-- =========================================================================
+       SCREEN 3: SUMMARY & REVIEW MODE
+       ========================================================================= -->
+  <div id="results-screen" class="hidden">
+    <div class="results-hero-card">
+      <div id="res-badge" class="res-badge">
+        <span>🏆</span> Exam Ready
+      </div>
+      <h2 id="res-title" class="res-title">Quiz Completed!</h2>
+      <p id="res-subtitle" class="res-subtitle">
+        Here is your complete performance breakdown for Friday's exam.
+      </p>
+
+      <!-- Stat cards -->
+      <div class="res-stats-grid">
+        <div class="res-stat-card">
+          <div id="res-score-pct" class="res-stat-val score">0%</div>
+          <div class="res-stat-label">Final Score</div>
+        </div>
+        <div class="res-stat-card">
+          <div id="res-correct-count" class="res-stat-val correct">0</div>
+          <div class="res-stat-label">Correct Answers</div>
+        </div>
+        <div class="res-stat-card">
+          <div id="res-incorrect-count" class="res-stat-val incorrect">0</div>
+          <div class="res-stat-label">Incorrect Answers</div>
+        </div>
+        <div class="res-stat-card">
+          <div id="res-time-taken" class="res-stat-val time">00:00</div>
+          <div class="res-stat-label">Total Time</div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="res-actions">
+        <button class="btn-action btn-submit" onclick="restartCurrentQuiz()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          Restart (Fresh Shuffled Attempt)
+        </button>
+        <button class="btn-action btn-secondary" onclick="confirmExitHomeDirect()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Back to Course Selection
+        </button>
+      </div>
+    </div>
+
+    <!-- Review Section with Filter Pills -->
+    <div class="review-panel">
+      <div class="review-header">
+        <h3 class="review-title">Detailed Question Review (120 Questions)</h3>
+        <div class="review-filters">
+          <button class="rev-filter-btn active" onclick="filterReview('all', this)">All (120)</button>
+          <button class="rev-filter-btn" onclick="filterReview('incorrect', this)">Incorrect Only</button>
+          <button class="rev-filter-btn" onclick="filterReview('correct', this)">Correct Only</button>
+          <button class="rev-filter-btn" onclick="filterReview('flagged', this)">Flagged Only</button>
+        </div>
+      </div>
+
+      <div id="review-list" class="review-list">
+        <!-- Review cards injected here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       CUSTOM MODAL COMPONENT (NO NATIVE POPUP BLOCKERS)
+       ========================================================================= -->
+  <div id="custom-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div id="modal-icon" class="modal-icon">📋</div>
+      <h3 id="modal-title" class="modal-title">Confirm Action</h3>
+      <p id="modal-msg" class="modal-msg">Modal description text</p>
+      <div class="modal-actions">
+        <button class="btn-action btn-secondary" onclick="closeCustomModal()">Cancel</button>
+        <button id="modal-confirm-btn" class="btn-action btn-submit" onclick="executeModalAction()">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       JAVASCRIPT: QUESTION DATA & COMPREHENSIVE ENGINE
+       ========================================================================= -->
+  <script>
+    // Embedded questions for both courses
+    const DATA_DESIGN = [{"q":"While we talk about the evaluation phases of the computer, _____ is called the modern age of computers.","type":"single","opts":["1985 onwards","1998 onwards","2007 onwards","2011 onwards"],"ans":[3]},{"q":"Which among the following is NOT a generic category of users?","type":"single","opts":["Novice","Super knowledgeable","Intermittent","Expert"],"ans":[1]},{"q":"In the Spiral Model, why is the second quadrant crucial for interactive software development?","type":"single","opts":["It defines the UI layout","It finalizes the system architecture","It identifies and mitigates usability risks via prototyping","It handles testing and deployment"],"ans":[2]},{"q":"What does the term 'utility' refer to in the context of usability?","type":"single","opts":["Speed of task completion","Visual appeal of the design","Functional support for user needs","Frequency of feature updates"],"ans":[2]},{"q":"Which one of the following is NOT a computer?","type":"single","opts":["Desktop","Digital Pedometer","Smartphone","None of the above"],"ans":[3]},{"q":"Interactive software development is _____ in nature.","type":"single","opts":["sporadic","iterative","variable","discrete"],"ans":[1]},{"q":"Which of the following is NOT one of the five quality components of usability proposed by Jacob Nielsen?","type":"single","opts":["Learnability","Efficiency","Satisfaction","Memorization"],"ans":[3]},{"q":"Which of the following is NOT a characteristic of the Waterfall model?","type":"single","opts":["Feasibility study","Learnability study","System integration and testing","Maintenance"],"ans":[1]},{"q":"'Identify objectives' and 'customer evaluation and planning' is in the _____ and _____ quadrant of the spiral model respectively.","type":"single","opts":["First, Fourth","Second, Third","Third, Fourth","Fourth, Second"],"ans":[0]},{"q":"Which design approach focuses on what a programmer finds interesting to build?","type":"single","opts":["System-Centered Design","User-Centered Design","Utility-Based Design","Participatory Design"],"ans":[0]},{"q":"Contextual inquiry is also known as _________.","type":"single","opts":["Interview","Observation","Semi-structured interview"],"ans":[2]},{"q":"In SRS, functions are not represented as","type":"single","opts":["Function name","Input","Output","Description","Motivation"],"ans":[4]},{"q":"Contextual inquiry can be done in _____ and passive mode.","type":"single","opts":["active","semi-active","neutral"],"ans":[0]},{"q":"There are _____ stages in contextual inquiry.","type":"single","opts":["two","five","six","eight"],"ans":[1]},{"q":"Which stage in the Contextual Inquiry process involves arranging for recording observations and scripting the procedure?","type":"single","opts":["Plan Stage","Initiate Stage","Execute Stage","Reflect Stage"],"ans":[0]},{"q":"Affinity diagram method consists of _____ steps.","type":"single","opts":["Three","Two","Six","Five"],"ans":[3]},{"q":"Usability requirements is one type of _____.","type":"single","opts":["Functional Requirement","Non-functional requirement"],"ans":[1]},{"q":"What is the primary objective of Contextual Inquiry?","type":"single","opts":["To watch and observe users perform tasks in their natural work setting","To conduct semi-structured interviews with users","To develop design recommendations","To study user behavior using physical note-taking"],"ans":[0]},{"q":"What is the purpose of the 'Reflect' stage in the Contextual Inquiry process?","type":"single","opts":["To contact the authorities for permission","To analyze the data collected and identify design goals","To script the procedure and rehearse for observations"],"ans":[1]},{"q":"How long does the Contextual Inquiry process typically continue?","type":"single","opts":["One to two weeks","One to two hours","One to two months"],"ans":[1]},{"q":"In SRS document the functions should describe HOW to get the output from the given input.","type":"single","opts":["True","False"],"ans":[1]},{"q":"We can also add new functional requirements based on the observations made in contextual inquiry.","type":"single","opts":["True","False"],"ans":[0]},{"q":"In user-centered design, we have two concerns: Interface design and","type":"single","opts":["Machine design","Hardware design","Code design","System design"],"ans":[2]},{"q":"The design-prototype-evaluate cycle primarily caters to _______ design.","type":"single","opts":["Interface","Code","System"],"ans":[0]},{"q":"Code design can be expressed in natural languages, semi-formal languages and __________.","type":"single","opts":["Informal languages","Formal languages","Context sensitive languages"],"ans":[1]},{"q":"DFD is a ________ code design language.","type":"single","opts":["Natural","Semi-formal","Informal","Context sensitive"],"ans":[1]},{"q":"Shneiderman proposed _______ rules that covers broad aspects of interactive systems.","type":"single","opts":["Five","Seven","Eight","Nine"],"ans":[2]},{"q":"\"The interface should not force users to remember too many things\" – this statement falls under \"__________\", one of the golden rules proposed by Shneiderman.","type":"single","opts":["Strive for consistency","Permit easy reversal of actions","Reduce short-term memory load","Keep users in control"],"ans":[2]},{"q":"Human interface guidelines for the apple systems are the _______ design guidelines.","type":"single","opts":["Generic","Specific"],"ans":[1]},{"q":"Identification of data structures and algorithms for different modules is done on the _________ phase of code design.","type":"single","opts":["Preliminary (high-level) design","Detailed design"],"ans":[1]},{"q":"Norman's Model of Interaction represents behavior of a user of interactive systems in terms of a series of _____.","type":"single","opts":["actions","selection","manipulation"],"ans":[0]},{"q":"There are broadly two stages of interaction execution stage and _____ stage.","type":"single","opts":["design","evaluation","interaction"],"ans":[1]},{"q":"Perceive system state comes under the _____ stage of interaction.","type":"single","opts":["execution","design","evaluation","interaction"],"ans":[2]},{"q":"Actions we specify to translate intentions may not be supported by the interface leading to gap (gulf) between the first three and the last actions in the execution stage- It is called _____.","type":"single","opts":["The gulf of execution","The gulf of evaluation","The gulf of Interaction"],"ans":[0]},{"q":"Particularly in the context of errors during interaction is explained in terms of slips and _____.","type":"single","opts":["error","mistakes","human error"],"ans":[1]},{"q":"In a vertical prototype, the entire interface is depicted at the surface level without any functionality.","type":"single","opts":["True","False"],"ans":[1]},{"q":"Paper mock-ups are the example of ________ prototype.","type":"single","opts":["Low fidelity","High fidelity","Medium fidelity"],"ans":[0]},{"q":"There is a requirement of 3-5 member team for the cognitive walkthrough.","type":"single","opts":["True","False"],"ans":[0]},{"q":"In a cognitive walkthrough evaluation, evaluators are expected to answer the questions only in \"yes\" or \"no\"","type":"single","opts":["True","False"],"ans":[1]},{"q":"In this technique, a human subject believes to interact with an autonomous computer. But, In reality, however, the computer is operated by an \"unseen\" human being. This technique is called_____ approach.","type":"single","opts":["Medium fidelity","Vertical","Wizard of Oz","Incremental"],"ans":[2]},{"q":"How do we evaluate an interface?","type":"single","opts":["by evaluating satisfaction","by evaluating memorability","by evaluating usability"],"ans":[2]},{"q":"We need to frame a set of questions (usability issues) for the evaluators before performing a cognitive walkthrough","type":"single","opts":["True","False"],"ans":[0]},{"q":"In a heuristic evaluation, the items in the checklist are called ________.","type":"single","opts":["checkbox","heuristics","usability issues","problems"],"ans":[1]},{"q":"There are many ways of collecting user feedback in evaluation with self report methods: __________, can ask them to choose from a list of system attributes ask direct and open-ended questions.","type":"single","opts":["Utter the option","Rating on a scale"],"ans":[1]},{"q":"ASQ is a ____________.","type":"single","opts":["Post-task questionnaire","Post-session questionnaire"],"ans":[0]},{"q":"It is generally assumed that an SUS score around _____ percent or higher is desirable","type":"single","opts":["10","20","50","70"],"ans":[3]},{"q":"In expert evaluation, the evaluation team should have at least _______ members.","type":"single","opts":["3-5","4-7","5-7","7-9"],"ans":[0]},{"q":"In heuristic evaluation, a system is evaluated with a checklist are called ___ .","type":"single","opts":["Heuristics","Actions","Statement"],"ans":[0]},{"q":"What is the full form of SUS","type":"single","opts":["Software usability score","Software usability scale","System usability score","System usability scale"],"ans":[3]},{"q":"Which are from the following are the valid prototype evaluation methods","type":"multi","opts":["Cognitive walkthrough","Affinity diagram","Heuristic evaluation"],"ans":[0,2]},{"q":"Which of the following is NOT a characteristic of Good design","type":"single","opts":["Coverage","Correctness","Understandability","Colorful"],"ans":[3]},{"q":"If all functions perform similar operations it falls under _____ cohesion.","type":"single","opts":["Logical","Temporal","Procedural","Sequential"],"ans":[0]},{"q":"If two modules share code, it falls under _______ coupling.","type":"single","opts":["Data","Control","Content"],"ans":[2]},{"q":"There are two basic design approaches: function oriented and _____ oriented.","type":"single","opts":["Logic","Folder","Object","Class"],"ans":[2]},{"q":"Basic components of ER diagram are: Entity, ____ and Relationship","type":"single","opts":["Object","User","Attribute","Class"],"ans":[2]},{"q":"Null attributes are used when:","type":"single","opts":["An entity does not have a value for an attribute","A value needs to be derived from other attributes or entities"],"ans":[0]},{"q":"There are four types of relationships in ER diagram: one-to-one, one-to-many, many-to-one and _____.","type":"single","opts":["Many-to-binary","Many-to-many","Binary-to-many","Binary-to-one"],"ans":[1]},{"q":"Which of the following is/are the type of cohesion?","type":"multi","opts":["Temporal","Functional","Content","All of the above"],"ans":[0,1]},{"q":"Which one from the following are related with between modules?","type":"single","opts":["Cohesion","Coupling","Both"],"ans":[1]},{"q":"What is the full form of the DFD","type":"single","opts":["Data flow design","Data flow decision","Data flow development","Data flow diagram"],"ans":[3]},{"q":"In functional design approach we think of the system as provider of a set of \"services\" represented as _____.","type":"single","opts":["Data","Functions","Objects"],"ans":[1]},{"q":"In \"Object Oriented Design approach\", we do not consider \"services\" offered by system.","type":"single","opts":["True","False"],"ans":[0]},{"q":"A class contains attributes and _________.","type":"single","opts":["Data","Operations","Objects"],"ans":[1]},{"q":"Attribute indicates nature of data that an object can contain.","type":"single","opts":["True","False"],"ans":[0]},{"q":"Full form of OOA is:","type":"single","opts":["object oriented assignment","object oriented assistance","object oriented analysis","object oriented attributes"],"ans":[2]},{"q":"_____ effectively denotes the behavior of class.","type":"single","opts":["Data","Operations","Objects","Attributes"],"ans":[1]},{"q":"UML is a language to represent","type":"single","opts":["OOP","OOA","OOD"],"ans":[2]},{"q":"UML is a design methodology","type":"single","opts":["True","False"],"ans":[1]},{"q":"Implementation view can be captured using ______.","type":"single","opts":["Deployment diagram","Component diagram","Class diagram","Use case diagram"],"ans":[1]},{"q":"_______ objects normally hold information (e.g. book, book registers etc).","type":"single","opts":["Boundary","Controller","Entity"],"ans":[2]},{"q":"Following standard coding guidelines helps to improve _____.","type":"single","opts":["Readability only","Understandability only","Teamwork only","Readability, understandability, and teamwork"],"ans":[3]},{"q":"A function should have no longer than ____ lines of code.","type":"single","opts":["5","16","10","8"],"ans":[2]},{"q":"What are some things to avoid when writing code? (Choose all that apply)","type":"multi","opts":["Using lengthy functions","Using the same identifier for multiple purposes","Using 'goto' (branching) statements indiscriminately","Using proper indentation"],"ans":[0,1,2]},{"q":"Two broad categories of code testing methods are review-based method and ________ method.","type":"single","opts":["Manual testing","Execution-based"],"ans":[1]},{"q":"What are the two common methods for review-based testing? (Choose all that apply)","type":"multi","opts":["Code inspection","Code walkthrough","Unit testing"],"ans":[0,1]},{"q":"White-box testing refers to designing test cases using knowledge of internal structure of the software.","type":"single","opts":["True","false"],"ans":[0]},{"q":"How many members should be present in a code walkthrough team?","type":"single","opts":["2-3 members","3-5 members","5-7 members","7-10 members"],"ans":[1]},{"q":"Which of the following code testing method requires simulation of code execution by hand?","type":"single","opts":["Code walkthrough","Code inspection","Black box testing","White box testing"],"ans":[0]},{"q":"Uninitialized variable is one of the common errors in programming that can be identified through code inspection.","type":"single","opts":["True","False"],"ans":[0]},{"q":"Which of the following is not required to perform black box testing?","type":"single","opts":["Equivalence class partitioning","Boundary value analysis","Test suite creation","Knowledge of the internal structure of the code"],"ans":[3]},{"q":"Set of all test cases with which a given software is to be tested is known as _______.","type":"single","opts":["Testcase","Test suite"],"ans":[1]},{"q":"Randomly selected test cases do not necessarily contribute to significance of test suite.","type":"single","opts":["True","False"],"ans":[0]},{"q":"In black box testing the two main approaches to design test vases are: Equivalence class partitioning and ___________.","type":"single","opts":["Structural analysis","Boundary value analysis","Equivalence class analysis","System analysis"],"ans":[1]},{"q":"Testing code with any ____ value(s) of an equivalence class is as good as testing with ALL input values belonging to that class.","type":"single","opts":["One","Two","Five","Four"],"ans":[0]},{"q":"In black box testing, domain of input values partitioned into sets, each sets are called _______.","type":"single","opts":["Partition class","Equivalence class","Program class"],"ans":[1]},{"q":"Which is/are from the following are valid review based testing","type":"multi","opts":["Code walkthrough","Code inspection","Code analysis","Code assessment"],"ans":[0,1]},{"q":"Set of all test cases with which a given software is to be tested is called test ____","type":"single","opts":["Question","Questionnaire","Suite"],"ans":[2]},{"q":"In Black-box testing, the test cases are based on","type":"multi","opts":["input","knowledge of design","output","knowledge of code"],"ans":[0,2]},{"q":"Domain of input values partitioned into set is called equivalence class","type":"single","opts":["True","False"],"ans":[0]},{"q":"Functional testing is related to","type":"single","opts":["Black-box testing","White-box testing"],"ans":[0]},{"q":"To do a white-box testing, knowledge of internal structure is required.","type":"single","opts":["True","False"],"ans":[0]},{"q":"To understand white-box testing strategies, program (flow) visualization helps. To visualize the program we can take help of _______.","type":"single","opts":["CFG","DFD","ERD","Class diagram"],"ans":[0]},{"q":"To construct a CFG we assign numbers to all statements of the program, create a node in the CFG for each numbered statement and__________.","type":"single","opts":["Complement the CFG","Add edges","Sort the nodes"],"ans":[1]},{"q":"Branch coverage guarantees statement coverage.","type":"single","opts":["True","False"],"ans":[0]},{"q":"In path coverage, test cases should ensure all ________ in the code executed at least once.","type":"single","opts":["Linearly independent paths","Linearly dependent paths"],"ans":[0]},{"q":"To compute cyclomatic complexity, we can use _________ where E=number of edges, N=number of nodes.","type":"single","opts":["E-N+2","E-N+1","E+N-2","E+N-1"],"ans":[0]},{"q":"Three main stages of system testing is alpha testing, beta testing and _______.","type":"single","opts":["Gama testing","Sigma testing","Acceptance testing","Omega testing"],"ans":[2]},{"q":"Volume testing tests system performance for _____ input.","type":"single","opts":["Small","Large"],"ans":[1]},{"q":"There are ____ stages of empirical research.","type":"single","opts":["Three","Four","Five","Six"],"ans":[1]},{"q":"Data we get from observation is _______ data.","type":"single","opts":["Reflective","Empirical","Authoritative","Experiential"],"ans":[1]},{"q":"When we perform a controlled experiment to collect and analyze data on user behavior, the entire process is known as _________.","type":"single","opts":["programmable research","hypothetical research","empirical research","theoretical research"],"ans":[2]},{"q":"There are broadly ________ stages of empirical research?","type":"single","opts":["Two","three","four","five"],"ans":[2]},{"q":"Suppose we formed two research questions: RQ1: Is the new technique good? RQ2: Is our text input interface better than the text input interface provided by, say, MS Word? RQ3: Does the new interface let me enter text \"faster\" than MS Word? We call RQ3 _________ and RQ1 as _________.","type":"single","opts":["testable, non-testable","alternative hypothesis, null hypothesis"],"ans":[0]},{"q":"When we form a hypothesis, essentially stating that the test condition is not going to affect the outcome (judgment). This hypothesis is called __________.","type":"single","opts":["null hypothesis","alternative hypothesis"],"ans":[0]},{"q":"In __________, we assign some (arbitrary) codes to attributes of observational data.","type":"single","opts":["nominal","ordinal","interval","ratio"],"ans":[0]},{"q":"Recording data from a thermometer is an example of interval scaled data.","type":"single","opts":["True","False"],"ans":[0]},{"q":"__________ are variables that influence both the independent and dependent variables in a study, potentially leading to incorrect conclusions about the relationship between the two.","type":"single","opts":["Dependent variables","Independent variables","Confounding variables","Control variables"],"ans":[2]},{"q":"For any pilot study (or small-scale studies), 5 is probably a good number.","type":"single","opts":["True","False"],"ans":[0]},{"q":"To draw reliable conclusions from empirical data, we should use between __________ and __________ participants.","type":"single","opts":["1, 5","2, 5","12, 25","10, 12"],"ans":[2]},{"q":"When we distribute the tasks to participants in the way explained above, we call the study as _________.","type":"single","opts":["between-subject","within-subject","uni-subject","center-subject"],"ans":[0]},{"q":"With the significance test, we try to __________ the null hypothesis.","type":"single","opts":["Accept","Refute"],"ans":[1]},{"q":"Type I error is also known as __________.","type":"single","opts":["False positive","False negative","True positive","True negative"],"ans":[0]},{"q":"t-statistic is the ONLY way to test for statistical significance.","type":"single","opts":["True","False"],"ans":[1]},{"q":"There are broadly two categories of the techniques for significance test: __________ and __________.","type":"single","opts":["Parametric and Non-parametric","t-test and non t-test"],"ans":[0]},{"q":"Project planning involves estimation of Project size, Cost, Duration and Effort.","type":"single","opts":["True","False"],"ans":[0]},{"q":"COCOMO stands for _____________.","type":"single","opts":["Conducive Cost Estimation Model","Constructive Cost Estimation Model","Constructive Category Estimation Model","Conducive Category Estimation Model"],"ans":[1]},{"q":"According to Boehm, software cost estimation should be done through _____________ stages.","type":"single","opts":["Two","Three","Four","Five"],"ans":[1]},{"q":"Agile development ensure quick turn-around of projects","type":"single","opts":["True","False"],"ans":[0]},{"q":"Scrum is a _________ method.","type":"single","opts":["Traditional SDLC","Agile"],"ans":[1]},{"q":"In a Gantt chart the length is proportional to ________ for activity","type":"single","opts":["Duration planned","Effort","Cost"],"ans":[0]}];
+    const DATA_OB = [{"q":"Response of the organism or system to various stimuli or inputs, whether internal or external, conscious or subconscious, overt or covert, voluntary or involuntary is called:","type":"single","opts":["Organization","Behaviour","Resource","Productivity"],"ans":[1]},{"q":"Hawthorne experiments were a set of experiments conducted to study the impact of assembly line on the health of the workers.","type":"single","opts":["True","False"],"ans":[1]},{"q":"The social expectation on an individual is called:","type":"single","opts":["Role","Designation","Job","Task"],"ans":[0]},{"q":"Which of the following is not an organization?","type":"single","opts":["TATA Steels","UNICEF","Facebook Inc.","Germany"],"ans":[3]},{"q":"More output for less input or being able to provide optimal output for a given input is called:","type":"single","opts":["Effectiveness","Productivity","Efficiency","Motivation"],"ans":[2]},{"q":"Which field can be called as the mother of Organizational behaviour?","type":"single","opts":["Anthropology","Economics","Industrial Psychology","Law"],"ans":[2]},{"q":"In an experiment, the group in which you make no changes is called the:","type":"single","opts":["Experimental Group","Focus Group","Control Group","Target Group"],"ans":[2]},{"q":"The assembly line of production was first introduced by Henry Ford.","type":"single","opts":["True","False"],"ans":[0]},{"q":"The scientific management movement was pioneered by:","type":"single","opts":["Walter Dill Scott","Edward K Strong Jr.","Hugo Munsterberg","Frederick W Taylor"],"ans":[3]},{"q":"The process of breaking down the entire job into specific tasks and see how each of these tasks are performed and how much time on an average a person will take to finish it is called:","type":"single","opts":["Time and Motion Study","Workplace management","Job Profile","Productivity"],"ans":[0]},{"q":"Perception is highly objective.","type":"single","opts":["True","False"],"ans":[1]},{"q":"There are many women at the bottom and middle level management roles but only a very few make it to the top. This is due to:","type":"single","opts":["Impression Management techniques","Golem effect","Pygmalion effect","Glass-ceiling effect"],"ans":[3]},{"q":"The process of giving meaning to sensory stimuli through organizing and interpreting is called:","type":"single","opts":["Sensation","Perception","Sublimation","Organization"],"ans":[1]},{"q":"Which of the following is an internal factor that influence the principles of perceptual selection?","type":"single","opts":["Contrast","Repetition","Motion","Habit"],"ans":[3]},{"q":"In the above picture, we tend to see columns of dots due to a perceptual grouping effect called: [equally spaced dot columns]","type":"single","opts":["Similarity","Proximity","Continuity","Symmetry"],"ans":[1]},{"q":"In the above image, one can still perceive the opening door to be of a rectangle shape due to: [door image]","type":"single","opts":["Figure-Ground Perception","Optical Illusions","Perceptual Constancy","Social Perception"],"ans":[2]},{"q":"The process through which individuals attempt to determine the causes behind others' behaviour is called attribution.","type":"single","opts":["True","False"],"ans":[0]},{"q":"According to Kelley's theory of causal attribution, the extent to which other people behave in the same manner as the person we are judging is called:","type":"single","opts":["Consensus","Consistency","Distinctiveness","Identity"],"ans":[0]},{"q":"The tendency to attribute others' action to internal causes while largely ignoring external factors is called:","type":"single","opts":["Halo effect","Team-Halo effect","Fundamental attribution error","Similar-to-me effect"],"ans":[2]},{"q":"The word \"Carpenter\" immediately brings in to memory the image of a male individual rather than a female individual. This is an example of a job stereotype.","type":"single","opts":["True","False"],"ans":[0]},{"q":"In Johari's Window model of self-awareness, the part of the self which is not known to ourselves, but others know is called:","type":"single","opts":["Open","Blind","Hidden","Unknown"],"ans":[1]},{"q":"The meaning of the Latin word 'Persona' from which the word Personality arises is:","type":"single","opts":["Behaviour","Mask","Thought","Person"],"ans":[1]},{"q":"Many psychologists argue that one's personality can be changed over a period of time because those qualities are formed because of social factors.","type":"single","opts":["True","False"],"ans":[0]},{"q":"According to Big Five Personality Theory, people who like to experiment and try and find out new things and are less judgmental about people of other cultures are high on:","type":"single","opts":["Adjustment","Agreeableness","Conscientiousness","Intellectual Openness"],"ans":[3]},{"q":"According to Sigmund Freud's psychoanalytic theory, the deepest level of consciousness is:","type":"single","opts":["Subconscious","Conscious state","Unconscious","Awareness"],"ans":[2]},{"q":"According to Sigmund Freud, reality principle is followed by:","type":"single","opts":["Id","Super Ego","Dream","Ego"],"ans":[3]},{"q":"In social learning theory, the withdrawal of something which somebody likes to strengthen a behaviour is called:","type":"single","opts":["Negative Reinforcement","Positive Reinforcement","Reward","Punishment"],"ans":[0]},{"q":"The main proponent of Self Theory was:","type":"single","opts":["Sigmund Freud","Albert Bandura","Carl Rogers","B.F. Skinner"],"ans":[2]},{"q":"Employees with high self-esteem are more ready to take responsibilities.","type":"single","opts":["True","False"],"ans":[0]},{"q":"People with _____ locus of control believe that others control their life and whatever happens in their life is because of outside factors.","type":"single","opts":["Internal","External"],"ans":[1]},{"q":"________ are evaluative statements towards objects, people or events.","type":"single","opts":["Learning","Attitudes","Memory","Personality"],"ans":[1]},{"q":"A relatively permanent change in behaviour occurring as a result of experience is called:","type":"single","opts":["Thinking","Sensation","Learning","Prejudice"],"ans":[2]},{"q":"Providing more information can lead to change in attitude.","type":"single","opts":["True","False"],"ans":[0]},{"q":"In Pavlov's Dog experiment, the food presented which makes the dog salivate is:","type":"single","opts":["Unconditional stimulus","Unconditional response","Conditioned stimulus","Conditioned response"],"ans":[0]},{"q":"In Operant conditioning, the process through which the responses that are no longer reinforced tend to gradually diminish in strength is called:","type":"single","opts":["Positive reinforcement","Negative Reinforcement","Punishment","Extinction"],"ans":[3]},{"q":"After watching a Dance TV show, a kid starts to make dance moves. This is an example of:","type":"single","opts":["Operant conditioning","Classical conditioning","Observational learning","Negative Reinforcement"],"ans":[2]},{"q":"Opinion is primarily _____ in nature.","type":"single","opts":["Affective","Cognitive","Behavioural","Unconscious"],"ans":[1]},{"q":"The intensity of an attitude or the magnitude/degree of its favorableness is called","type":"single","opts":["Multiplexity","Relation to need","Centrality","Valence"],"ans":[3]},{"q":"When people do not provide honest answers to certain questions because they feel that it is not right to give those answers, it is called:","type":"single","opts":["Social Loafing","Fatigue","Social Desirability Effect","Sampling"],"ans":[2]},{"q":"Uncomfortable tension which comes from holding two conflicting thoughts in the mind at the same time is called Cognitive Dissonance.","type":"single","opts":["True","False"],"ans":[0]},{"q":"The stress which happens because of positive incidences is called:","type":"single","opts":["Distress","Eustress","Hypo-stress","Hyper work stress"],"ans":[1]},{"q":"An unfocused, relatively mild feeling that exists as background to our daily experience is called:","type":"single","opts":["Behaviour","Perception","Mood","Envy"],"ans":[2]},{"q":"The psychological effort involved in holding back one's true emotions is called:","type":"single","opts":["Emotional dissonance","Emotional labor","Emotional Attachment","Temperament"],"ans":[1]},{"q":"When John failed his driving license test, he starts to remember how his friends used to tease him saying he was not a good driver. This is an example of:","type":"single","opts":["Work-family spillover effect","Emotional dissonance","Empathy","Mood congruence effect"],"ans":[3]},{"q":"Threat-based aggression can stem from both a real stimulus or a perceived stimulus.","type":"single","opts":["True","False"],"ans":[0]},{"q":"________ is when you have a goal and you are moving towards that goal and you feel that something or someone is stopping you from reaching that goal.","type":"single","opts":["Threat-based aggression","Instrumental aggression","Irritable aggression","Frustration-based aggression"],"ans":[3]},{"q":"Fear of being rejected is one of the main reasons that make people non-assertive.","type":"single","opts":["True","False"],"ans":[0]},{"q":"The feeling of completely tired and exhausted when you are stressed for a very long time accompanied by lack of meaning is called:","type":"single","opts":["Burnout","Absenteeism","Hypo stress","Alarm-reaction"],"ans":[0]},{"q":"What are the behavioural symptoms of stress?","type":"single","opts":["Low productivity","Interpersonal conflicts","Suicidal tendencies","All of the above"],"ans":[3]},{"q":"________ is a mild form of hate.","type":"single","opts":["Guilt","Humiliation","Resentment","Shame"],"ans":[2]},{"q":"________ is the willingness of a person to put high levels of efforts to reach a goal.","type":"single","opts":["Emotions","Motivation","Frustration","Incentives"],"ans":[1]},{"q":"The need to be part of a group is categorized as:","type":"single","opts":["Achievement motive","Affiliation motive","Power motive","Role conflict"],"ans":[1]},{"q":"Money is a form of extrinsic motivation.","type":"single","opts":["True","False"],"ans":[0]},{"q":"According to Maslow's hierarchy of needs, the highest level of needs one can achieve is:","type":"single","opts":["Self-actualization","Social Needs","Esteem needs","Safety needs"],"ans":[0]},{"q":"According to Herzberg's two-factor theory of motivation, pay and security provided by a job is a Motivator.","type":"single","opts":["True","False"],"ans":[1]},{"q":"In Alderfer's ERG theory of motivation, R stands for","type":"single","opts":["Reputation","Regression","Resilience","Relatedness"],"ans":[3]},{"q":"_________ means that employees feel that the organization treats its employees in a fair manner and a just way.","type":"single","opts":["Intra-personal conflict.","Self-esteem","Power motive","Organizational Justice Climate"],"ans":[3]},{"q":"________ is when you are moving towards a certain goal, but certain barriers are stopping you from achieving that goal.","type":"single","opts":["Goal conflict","Role conflict","Frustration","Satisfaction"],"ans":[2]},{"q":"One of the drawbacks of using money as a motivator is that it can reduce extra-role performance.","type":"single","opts":["True","False"],"ans":[0]},{"q":"John had applied for several jobs after graduation. One day he received a job offer from Tata Motors and Mahindra Group, both of which he loved to work. The conflict Mr. John is facing in selecting one job is called:","type":"single","opts":["Role Conflict","Approach-avoidance conflict","Approach-approach conflict","Avoidance-avoidance conflict"],"ans":[2]},{"q":"When each party involved in a task tries to maximize its own gains, often at the expense of others, it is called:","type":"single","opts":["Cooperation","Interdependency","Competition","None of the above"],"ans":[2]},{"q":"The degree of confidence we have on others in a relationship is called:","type":"single","opts":["Transactional contract","Relational contract","Trust","Norms"],"ans":[2]},{"q":"The kind of psychological contract that focuses on long-term interaction and a widely defined relationship is called relational contract.","type":"single","opts":["True","False"],"ans":[0]},{"q":"The type of trust that is established based on the credibility of a person, for e.g., trusting the doctor:","type":"single","opts":["Trust based on familiarity","Swift trust","Trust based on similarity","Trust based on social networks"],"ans":[1]},{"q":"The characteristic of being and respectful towards others is:","type":"single","opts":["Conscientiousness","Sportsmanship","Civic virtue","Courtesy"],"ans":[3]},{"q":"Treating the common resources responsibly is called","type":"single","opts":["True","False"],"ans":[0]},{"q":"________ is helping without expecting anything in return.","type":"single","opts":["Altruism","Competition","Cooperation","Conscientiousness"],"ans":[0]},{"q":"Disagreements on strategy and sharing of responsibility and resources is called:","type":"single","opts":["Relational conflict","Task conflict","Process conflict","Avoiding"],"ans":[2]},{"q":"People who focus on maximizing the joint outcomes of everyone involved are called:","type":"single","opts":["Competitors","Cooperators","Individualists","Equalizers"],"ans":[1]},{"q":"Which conflict handling style is best for both the parties involved?","type":"single","opts":["Competing","Avoiding","Accommodating","Collaborating"],"ans":[3]},{"q":"The communication style that is supportive and avoids change and confrontation is called:","type":"single","opts":["Animated communication style","Driver communication style","Amiable communication style","Analytical communication style"],"ans":[2]},{"q":"In communication, the process of converting a message into symbols is called:","type":"single","opts":["Message","Channel","Decoding","Encoding"],"ans":[3]},{"q":"Any disturbance that interfere with the transmission, receipt or feedback of a message is called noise.","type":"single","opts":["True","False"],"ans":[0]},{"q":"The level of openness which exists in an organization which gives a certain level of comfort to its members is called:","type":"single","opts":["Common information effect","Hidden profile paradigm","Communication climate","Paralinguistic communication"],"ans":[2]},{"q":"Which of the following is NOT a non-verbal mode of communication?","type":"single","opts":["Facial expressions","Pupil dilation","Gestures","None of the above"],"ans":[3]},{"q":"The study of spatial inter-relationships is called:","type":"single","opts":["Kinesics","Proxemics","Silence","Symbols"],"ans":[1]},{"q":"Maintaining and distributing minutes of the meeting is helpful in reducing miscommunication in team meetings.","type":"single","opts":["True","False"],"ans":[0]},{"q":"When parts of some information are shared with the group members whereas other pieces of information are unshared, it gives rise to:","type":"single","opts":["Hidden profile paradigm","Awareness","Trust building","Minimizing status difference"],"ans":[0]},{"q":"In information sharing scenario, the case that has to be avoided to reduce decision making problems is:","type":"single","opts":["Fully shared case","Non-overlapping case","Distributed partial overlap","All of the above"],"ans":[2]},{"q":"Most eastern cultures are comfortable with silence between conversations.","type":"single","opts":["True","False"],"ans":[0]},{"q":"The step in team decision making where the problem is defined and a consensus is arrived about what the problem is:","type":"single","opts":["Discussion","Implementation","Representativeness","Orientation"],"ans":[3]},{"q":"Making the smallest response possible that will reduce the problem to at least a tolerable level is called ________ to decision making.","type":"single","opts":["Satisficing approach","Rational Approach","Incremental approach","Garbage-can approach"],"ans":[2]},{"q":"Having a false sense of satisfaction even when problems start to show up is called:","type":"single","opts":["Complacency","Procrastination","Defensive avoidance","Panic"],"ans":[0]},{"q":"Trying to put the responsibility for decision making on somebody else is called buck passing.","type":"single","opts":["True","False"],"ans":[0]},{"q":"The tendency to be influenced by an initial figure, even when the information is largely irrelevant is called:","type":"single","opts":["Availability bias","Overconfidence","Anchoring and adjustment bias","Representativeness"],"ans":[2]},{"q":"The group's emphasis on harmony and conformity leading to a wrong decision is called:","type":"single","opts":["Majority rule","Synergy","Risk taking in groups","Groupthink"],"ans":[3]},{"q":"Sunk costs can be recovered.","type":"single","opts":["True","False"],"ans":[1]},{"q":"Tendency to invest additional resources in an apparently losing proposition, influenced by effort, money and time already invested:","type":"single","opts":["Abilene Paradox","Delphi method","Escalation of commitment","Groupthink"],"ans":[2]},{"q":"The tendency to make different decisions depending on how a problem is presented:","type":"single","opts":["Framing","Prospect theory","Representativeness","Bounded rationality"],"ans":[0]},{"q":"Finding a solution which is satisfactory than optimal is called satisficing approach to decision making.","type":"single","opts":["True","False"],"ans":[0]},{"q":"________ is the ability to persuade others to seek defined objectives enthusiastically.","type":"single","opts":["Coercion","Behavioural change","Leadership","Authority"],"ans":[2]},{"q":"The theory which states that the subordinates will be motivated to follow the leader only when they perceive that the leader can help them to fulfil their goals:","type":"single","opts":["Path-goal theory","Fiedler's model","Hersey and Blanchard's situational leadership theory","Trait theory"],"ans":[0]},{"q":"The source of power which is based on the capacity to administer punishment to others:","type":"single","opts":["Legitimate","Reward","Coercive","Expert"],"ans":[2]},{"q":"Expert power is when you have certain abilities which nobody else has or is very rare.","type":"single","opts":["True","False"],"ans":[0]},{"q":"Information or skills one possesses, which cannot be recorded or measured is called:","type":"single","opts":["Empowerment","Referent power","Gossiping","Tacit knowledge"],"ans":[3]},{"q":"The form of political behaviour exhibited when employees try to form a group based on common language they speak is:","type":"single","opts":["Impression management","Building coalitions","Blaming","Manipulating information flow"],"ans":[1]},{"q":"While managers rely on control, leaders _______.","type":"single","opts":["Ask how and when","Focus on systems and structure","Accept status quo","Inspire trust"],"ans":[3]},{"q":"The leadership style where the responsibilities are shared by all and can be very useful in businesses where creative ideas are very important:","type":"single","opts":["Autocratic","Laissez-Faire","Charismatic","Paternalistic"],"ans":[1]},{"q":"Democratic leadership style encourages decision making from different perspectives.","type":"single","opts":["True","False"],"ans":[0]},{"q":"The ideal case in Blake Mouton Managerial Grid of Leadership style is:","type":"single","opts":["Country club","Impoverished","Produce or perish","Team Leader"],"ans":[3]},{"q":"A type of thought exhibited by group members who try to minimize conflict and reach consensus without critically testing, analyzing and evaluating ideas.","type":"single","opts":["Groupthink","Instrumentality","Mundane task","Team cohesion"],"ans":[0]},{"q":"Airline attendant teams are an example of:","type":"single","opts":["Production teams","Service teams","Advisory teams","Management teams"],"ans":[1]},{"q":"Groups are more cohesive than teams and groups are a subset of teams.","type":"single","opts":["True","False"],"ans":[1]},{"q":"Which of the following is the source of organizational culture?","type":"single","opts":["Selection practices","Actions of top management","Socialization methods","Founder's vision/mission/attitudes"],"ans":[3]},{"q":"The stage of group development at which unwritten rules for teams are established:","type":"single","opts":["Norming","Storming","Forming","Adjourning"],"ans":[0]},{"q":"Taking advantage of other members in a group and claiming ownership for their work is called:","type":"single","opts":["Altruism","Groupthink","Freeriding","Synergy"],"ans":[2]},{"q":"Sometimes in teams, people may think that if they work more, other people will take advantage of them and give all the responsibilities to them. So it is better to decrease their performance. This phenomenon is called:","type":"single","opts":["De-individualization","Social loafing","Freeriding","Sucker aversion"],"ans":[3]},{"q":"Low trust among the team members can often lead to social loafing.","type":"single","opts":["True","False"],"ans":[0]},{"q":"Culture influences both the conscious and unconscious level of the mind.","type":"single","opts":["True","False"],"ans":[0]},{"q":"An organization in which its culture is driven by the motive for affiliation:","type":"single","opts":["Bureaucracy","Industrial Organization","Clubs","Educational Institutions"],"ans":[2]},{"q":"A set of interrelated and interdependent parts arranged in a manner that produces a unified whole is called:","type":"single","opts":["System","Training","Rituals","Span of control"],"ans":[0]},{"q":"Revolutionary change happens slowly in an organization and on its own.","type":"single","opts":["True","False"],"ans":[1]},{"q":"The formal system of task and authority relationships that control how people coordinate their actions and use resources to achieve organizational goals is called:","type":"single","opts":["Organizational structure","Organizational change","Cognitive biases","Resource allocation"],"ans":[0]},{"q":"Indian Railways having different zones of operation like Southern Railways, Central Railway etc. is an example of:","type":"single","opts":["Horizontal differentiation","Vertical differentiation","Spatial differentiation","None of the above"],"ans":[2]},{"q":"Defining employees' roles through formal documentation is a part of formalization.","type":"single","opts":["True","False"],"ans":[0]},{"q":"_________ can provide more inputs into decision making and will help in reducing information overload.","type":"single","opts":["Centralization","Decentralization","Environmental uncertainty","None of the above"],"ans":[1]},{"q":"According to life-cycle perspective, the stage of organizational life cycle where the goals are ambiguous but there is a lot of creativity is called:","type":"single","opts":["Formalization-and-control stage","Collectivity stage","Elaboration-of-structure stage","Entrepreneurial stage"],"ans":[3]},{"q":"The life-cycle perspective sees the organization as an organism.","type":"single","opts":["True","False"],"ans":[0]},{"q":"Redesigning business processes to increase organizational effectiveness is called:","type":"single","opts":["Restructuring","Reengineering","Organizational Ethics","Downsizing"],"ans":[1]},{"q":"Closed systems differentiate too much from the larger system and have their own identity.","type":"single","opts":["True","False"],"ans":[0]}];
+
+    // App State
+    let currentCourse = null; // 'design' | 'ob'
+    let rawQuestions = [];
+    let shuffledIndices = []; // Maps current display index -> original index
+    let currentIndex = 0;
+    
+    // Per-question user state:
+    // { selected: number[], submitted: boolean, isCorrect: boolean, isFlagged: boolean }
+    let userState = [];
+
+    // Timer State
+    let timerInterval = null;
+    let secondsElapsed = 0;
+
+    // Palette filter state
+    let paletteFilter = 'all';
+
+    // Pending modal callback
+    let pendingModalAction = null;
+
+    // =========================================================================
+    // INITIALIZATION & ROUTING
+    // =========================================================================
+    function startQuiz(courseKey) {
+      currentCourse = courseKey;
+      rawQuestions = (courseKey === 'design') ? DATA_DESIGN : DATA_OB;
+
+      // Initialize state for each question
+      userState = rawQuestions.map(() => ({
+        selected: [],
+        submitted: false,
+        isCorrect: false,
+        isFlagged: false
+      }));
+
+      // Fisher-Yates shuffle of question indices [0..119]
+      shuffledIndices = Array.from({ length: rawQuestions.length }, (_, i) => i);
+      for (let i = shuffledIndices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
+      }
+
+      currentIndex = 0;
+
+      // Update UI for course
+      const badge = document.getElementById('active-course-badge');
+      const nameText = document.getElementById('course-name-text');
+      if (courseKey === 'design') {
+        badge.className = 'course-badge-pill badge-design';
+        nameText.textContent = 'Design Course (120 Qs)';
+      } else {
+        badge.className = 'course-badge-pill badge-ob';
+        nameText.textContent = 'Organisational Behaviour (120 Qs)';
+      }
+
+      // Start Timer
+      secondsElapsed = 0;
+      clearInterval(timerInterval);
+      updateTimerDisplay();
+      timerInterval = setInterval(() => {
+        secondsElapsed++;
+        updateTimerDisplay();
+      }, 1000);
+
+      // Render Palette
+      buildPalette();
+
+      // Show Quiz Screen
+      document.getElementById('home-screen').classList.add('hidden');
+      document.getElementById('results-screen').classList.add('hidden');
+      document.getElementById('quiz-screen').classList.remove('hidden');
+
+      renderCurrentQuestion();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showExitModal() {
+      openCustomModal(
+        '⚠️',
+        'Exit to Courses?',
+        'Your current quiz progress will be reset. Are you sure you want to return to course selection?',
+        () => {
+          confirmExitHomeDirect();
+        }
+      );
+    }
+
+    function confirmExitHomeDirect() {
+      clearInterval(timerInterval);
+      document.getElementById('quiz-screen').classList.add('hidden');
+      document.getElementById('results-screen').classList.add('hidden');
+      document.getElementById('home-screen').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function restartCurrentQuiz() {
+      startQuiz(currentCourse);
+    }
+
+    // =========================================================================
+    // MODAL DIALOGS
+    // =========================================================================
+    function openCustomModal(icon, title, msg, onConfirm) {
+      document.getElementById('modal-icon').textContent = icon;
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-msg').textContent = msg;
+      pendingModalAction = onConfirm;
+      document.getElementById('custom-modal').classList.remove('hidden');
+    }
+
+    function closeCustomModal() {
+      pendingModalAction = null;
+      document.getElementById('custom-modal').classList.add('hidden');
+    }
+
+    function executeModalAction() {
+      if (pendingModalAction) {
+        const action = pendingModalAction;
+        closeCustomModal();
+        action();
+      }
+    }
+
+    function showFinishModal() {
+      const total = rawQuestions.length;
+      const submittedCount = userState.filter(s => s.submitted).length;
+      const unsubmittedCount = total - submittedCount;
+
+      let msg = `You have answered ${submittedCount} of ${total} questions.`;
+      if (unsubmittedCount > 0) {
+        msg += ` There are still ${unsubmittedCount} question(s) unsubmitted. Are you ready to finish and review your performance?`;
+      } else {
+        msg += ` All questions have been answered. Ready to see your final score and review?`;
+      }
+
+      openCustomModal(
+        '🏁',
+        'Finish Quiz?',
+        msg,
+        () => {
+          clearInterval(timerInterval);
+          showResultsScreen();
+        }
+      );
+    }
+
+    // =========================================================================
+    // TIMER & SCORE DISPLAY
+    // =========================================================================
+    function updateTimerDisplay() {
+      const mins = Math.floor(secondsElapsed / 60);
+      const secs = secondsElapsed % 60;
+      document.getElementById('timer-display').textContent = 
+        String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+    }
+
+    function updateLiveScore() {
+      const submittedQuestions = userState.filter(s => s.submitted);
+      const correctCount = userState.filter(s => s.submitted && s.isCorrect).length;
+      document.getElementById('live-score-display').textContent = 
+        `${correctCount} / ${submittedQuestions.length}`;
+      
+      const totalAnswered = submittedQuestions.length;
+      document.getElementById('answered-counter').textContent = `${totalAnswered} / 120`;
+
+      // Update progress bar
+      const pct = (totalAnswered / rawQuestions.length) * 100;
+      document.getElementById('progress-bar-fill').style.width = pct + '%';
+    }
+
+    // =========================================================================
+    // RENDERING CURRENT QUESTION
+    // =========================================================================
+    function renderCurrentQuestion() {
+      const origIndex = shuffledIndices[currentIndex];
+      const q = rawQuestions[origIndex];
+      const state = userState[origIndex];
+
+      // Update Header info
+      document.getElementById('q-index-label').textContent = 
+        `Question ${currentIndex + 1} of ${rawQuestions.length}`;
+      
+      const typeBadge = document.getElementById('q-type-badge');
+      if (q.type === 'multi') {
+        typeBadge.className = 'q-type-pill multi';
+        typeBadge.textContent = 'Multiple Correct (Check all that apply)';
+      } else {
+        typeBadge.className = 'q-type-pill';
+        typeBadge.textContent = 'Single Choice';
+      }
+
+      // Flag button
+      const flagBtn = document.getElementById('flag-btn');
+      const flagText = document.getElementById('flag-text');
+      if (state.isFlagged) {
+        flagBtn.classList.add('flagged');
+        flagText.textContent = 'Flagged';
+      } else {
+        flagBtn.classList.remove('flagged');
+        flagText.textContent = 'Flag for Review';
+      }
+
+      // Prompt
+      document.getElementById('q-prompt').textContent = q.q;
+
+      // Options
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+
+      const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+      q.opts.forEach((optText, optIdx) => {
+        const item = document.createElement('div');
+        item.className = 'option-item' + (q.type === 'multi' ? ' multi' : '');
+        
+        const isSelected = state.selected.includes(optIdx);
+        if (isSelected) item.classList.add('selected');
+
+        if (state.submitted) {
+          item.classList.add('locked');
+          const isTargetAns = q.ans.includes(optIdx);
+          if (isTargetAns) {
+            item.classList.add('correct');
+          } else if (isSelected && !isTargetAns) {
+            item.classList.add('incorrect');
+          }
+        } else {
+          item.onclick = () => handleOptionClick(optIdx);
+        }
+
+        const marker = document.createElement('div');
+        marker.className = 'option-marker';
+        marker.textContent = letters[optIdx] || (optIdx + 1);
+
+        const textDiv = document.createElement('div');
+        textDiv.className = 'option-text';
+        textDiv.textContent = optText;
+
+        item.appendChild(marker);
+        item.appendChild(textDiv);
+        optionsContainer.appendChild(item);
+      });
+
+      // Feedback banner
+      const feedbackBanner = document.getElementById('feedback-banner');
+      const feedbackIcon = document.getElementById('feedback-icon');
+      const feedbackTitle = document.getElementById('feedback-title');
+      const feedbackDesc = document.getElementById('feedback-desc');
+
+      if (state.submitted) {
+        feedbackBanner.classList.remove('hidden');
+        if (state.isCorrect) {
+          feedbackBanner.className = 'feedback-banner is-correct';
+          feedbackIcon.textContent = '✅';
+          feedbackTitle.textContent = 'Correct Answer!';
+          feedbackDesc.textContent = 'Great job! You identified the right choice(s).';
+        } else {
+          feedbackBanner.className = 'feedback-banner is-incorrect';
+          feedbackIcon.textContent = '❌';
+          feedbackTitle.textContent = 'Incorrect Answer';
+          
+          const correctLetters = q.ans.map(i => letters[i] || i + 1).join(', ');
+          const correctTexts = q.ans.map(i => q.opts[i]).join('; ');
+          feedbackDesc.textContent = `Correct option: [${correctLetters}] ${correctTexts}`;
+        }
+      } else {
+        feedbackBanner.classList.add('hidden');
+      }
+
+      // Buttons states
+      document.getElementById('prev-btn').disabled = (currentIndex === 0);
+      
+      const submitBtn = document.getElementById('submit-btn');
+      if (state.submitted) {
+        submitBtn.textContent = 'Checked';
+        submitBtn.disabled = true;
+      } else {
+        submitBtn.textContent = 'Check Answer';
+        submitBtn.disabled = (state.selected.length === 0);
+      }
+
+      updateLiveScore();
+      updatePaletteCells();
+    }
+
+    // =========================================================================
+    // OPTION SELECTION & SUBMISSION
+    // =========================================================================
+    function handleOptionClick(optIdx) {
+      const origIndex = shuffledIndices[currentIndex];
+      const q = rawQuestions[origIndex];
+      const state = userState[origIndex];
+
+      if (state.submitted) return; // already locked
+
+      if (q.type === 'multi') {
+        const foundPos = state.selected.indexOf(optIdx);
+        if (foundPos > -1) {
+          state.selected.splice(foundPos, 1);
+        } else {
+          state.selected.push(optIdx);
+        }
+      } else {
+        state.selected = [optIdx];
+      }
+
+      renderCurrentQuestion();
+    }
+
+    function submitCurrentAnswer() {
+      const origIndex = shuffledIndices[currentIndex];
+      const q = rawQuestions[origIndex];
+      const state = userState[origIndex];
+
+      if (state.selected.length === 0 || state.submitted) return;
+
+      // Check correctness
+      const sortedSelected = [...state.selected].sort();
+      const sortedAns = [...q.ans].sort();
+      
+      const isCorrect = (sortedSelected.length === sortedAns.length) &&
+        sortedSelected.every((val, i) => val === sortedAns[i]);
+
+      state.submitted = true;
+      state.isCorrect = isCorrect;
+
+      renderCurrentQuestion();
+    }
+
+    function toggleFlagCurrentQuestion() {
+      const origIndex = shuffledIndices[currentIndex];
+      userState[origIndex].isFlagged = !userState[origIndex].isFlagged;
+      renderCurrentQuestion();
+    }
+
+    function navigateQuestion(offset) {
+      const nextIdx = currentIndex + offset;
+      if (nextIdx >= 0 && nextIdx < rawQuestions.length) {
+        currentIndex = nextIdx;
+        renderCurrentQuestion();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function jumpToQuestion(displayIndex) {
+      if (displayIndex >= 0 && displayIndex < rawQuestions.length) {
+        currentIndex = displayIndex;
+        renderCurrentQuestion();
+        // If mobile palette was open, close it
+        document.getElementById('palette-panel').classList.remove('mobile-open');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // =========================================================================
+    // QUESTION PALETTE
+    // =========================================================================
+    function buildPalette() {
+      const grid = document.getElementById('palette-grid');
+      grid.innerHTML = '';
+
+      for (let i = 0; i < rawQuestions.length; i++) {
+        const cell = document.createElement('button');
+        cell.className = 'pal-cell';
+        cell.id = 'pal-cell-' + i;
+        cell.textContent = i + 1;
+        cell.onclick = () => jumpToQuestion(i);
+        grid.appendChild(cell);
+      }
+    }
+
+    function updatePaletteCells() {
+      for (let i = 0; i < rawQuestions.length; i++) {
+        const cell = document.getElementById('pal-cell-' + i);
+        if (!cell) continue;
+
+        const origIndex = shuffledIndices[i];
+        const state = userState[origIndex];
+
+        cell.className = 'pal-cell';
+
+        if (i === currentIndex) {
+          cell.classList.add('active-q');
+        }
+
+        if (state.submitted) {
+          if (state.isCorrect) {
+            cell.classList.add('correct');
+          } else {
+            cell.classList.add('incorrect');
+          }
+        }
+
+        if (state.isFlagged) {
+          cell.classList.add('flagged');
+        }
+
+        // Apply filter visibility
+        let visible = true;
+        if (paletteFilter === 'unanswered' && state.submitted) visible = false;
+        if (paletteFilter === 'answered' && !state.submitted) visible = false;
+        if (paletteFilter === 'flagged' && !state.isFlagged) visible = false;
+
+        cell.style.display = visible ? 'flex' : 'none';
+      }
+    }
+
+    function filterPalette(filterType, btnElem) {
+      paletteFilter = filterType;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btnElem.classList.add('active');
+      updatePaletteCells();
+    }
+
+    function toggleMobilePalette() {
+      const panel = document.getElementById('palette-panel');
+      panel.classList.toggle('mobile-open');
+    }
+
+    // =========================================================================
+    // FINISH QUIZ & RESULTS SCREEN
+    // =========================================================================
+    function showResultsScreen() {
+      document.getElementById('quiz-screen').classList.add('hidden');
+      document.getElementById('results-screen').classList.remove('hidden');
+
+      const total = rawQuestions.length;
+      const correctCount = userState.filter(s => s.submitted && s.isCorrect).length;
+      const incorrectCount = userState.filter(s => s.submitted && !s.isCorrect).length;
+      const scorePct = Math.round((correctCount / total) * 100);
+
+      // Hero texts
+      const mins = Math.floor(secondsElapsed / 60);
+      const secs = secondsElapsed % 60;
+      const timeStr = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+
+      document.getElementById('res-score-pct').textContent = scorePct + '%';
+      document.getElementById('res-correct-count').textContent = correctCount;
+      document.getElementById('res-incorrect-count').textContent = incorrectCount;
+      document.getElementById('res-time-taken').textContent = timeStr;
+
+      const badge = document.getElementById('res-badge');
+      const title = document.getElementById('res-title');
+      const subtitle = document.getElementById('res-subtitle');
+
+      if (scorePct >= 80) {
+        badge.innerHTML = '<span>🏆</span> Master Level';
+        title.textContent = 'Outstanding Performance!';
+        subtitle.textContent = `You scored ${scorePct}%! You are fully prepared to ace Friday's exam.`;
+      } else if (scorePct >= 50) {
+        badge.innerHTML = '<span>👍</span> Well Prepared';
+        title.textContent = 'Solid Attempt!';
+        subtitle.textContent = `You scored ${scorePct}%. Review your incorrect answers below to solidify key concepts.`;
+      } else {
+        badge.innerHTML = '<span>📚</span> Needs Revision';
+        title.textContent = 'Review & Practice!';
+        subtitle.textContent = `You scored ${scorePct}%. Take time to review the questions below and restart for another attempt.`;
+      }
+
+      renderReviewList('all');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // =========================================================================
+    // REVIEW LIST
+    // =========================================================================
+    let currentReviewFilter = 'all';
+
+    function renderReviewList(filter) {
+      currentReviewFilter = filter;
+      const listContainer = document.getElementById('review-list');
+      listContainer.innerHTML = '';
+
+      const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+      let matchCount = 0;
+
+      rawQuestions.forEach((q, origIdx) => {
+        const state = userState[origIdx];
+
+        // Filter condition
+        if (filter === 'incorrect' && (state.isCorrect || !state.submitted)) return;
+        if (filter === 'correct' && !state.isCorrect) return;
+        if (filter === 'flagged' && !state.isFlagged) return;
+
+        matchCount++;
+
+        const card = document.createElement('div');
+        card.className = 'rev-item-card';
+
+        const header = document.createElement('div');
+        header.className = 'rev-item-header';
+
+        const numSpan = document.createElement('div');
+        numSpan.style.fontWeight = '700';
+        numSpan.style.color = '#ffffff';
+        numSpan.textContent = `Question ${origIdx + 1}`;
+
+        const statusTag = document.createElement('div');
+        statusTag.style.display = 'flex';
+        statusTag.style.gap = '8px';
+
+        if (state.isFlagged) {
+          const fPill = document.createElement('span');
+          fPill.style.cssText = 'background:rgba(245,158,11,0.2);color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:700;';
+          fPill.textContent = 'FLAGGED';
+          statusTag.appendChild(fPill);
+        }
+
+        const resPill = document.createElement('span');
+        if (state.submitted) {
+          if (state.isCorrect) {
+            resPill.style.cssText = 'background:rgba(16,185,129,0.2);color:#34d399;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:700;';
+            resPill.textContent = 'CORRECT';
+          } else {
+            resPill.style.cssText = 'background:rgba(244,63,94,0.2);color:#fb7185;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:700;';
+            resPill.textContent = 'INCORRECT';
+          }
+        } else {
+          resPill.style.cssText = 'background:rgba(148,163,184,0.2);color:#94a3b8;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:700;';
+          resPill.textContent = 'UNANSWERED';
+        }
+        statusTag.appendChild(resPill);
+
+        header.appendChild(numSpan);
+        header.appendChild(statusTag);
+
+        const prompt = document.createElement('div');
+        prompt.className = 'rev-item-prompt';
+        prompt.textContent = q.q;
+
+        const optsDiv = document.createElement('div');
+        optsDiv.className = 'rev-opts-list';
+
+        q.opts.forEach((optText, oIdx) => {
+          const row = document.createElement('div');
+          row.className = 'rev-opt';
+
+          const isTargetAns = q.ans.includes(oIdx);
+          const wasSelected = state.selected.includes(oIdx);
+
+          if (isTargetAns) {
+            row.classList.add('is-correct-target');
+          } else if (wasSelected && !isTargetAns) {
+            row.classList.add('is-user-wrong');
+          }
+
+          let prefix = `[${letters[oIdx]}] `;
+          if (wasSelected && isTargetAns) {
+            prefix = `✅ [${letters[oIdx]}] Your Answer & Correct: `;
+          } else if (isTargetAns) {
+            prefix = `⭐ [${letters[oIdx]}] Correct Answer: `;
+          } else if (wasSelected) {
+            prefix = `❌ [${letters[oIdx]}] Your Choice: `;
+          }
+
+          row.textContent = prefix + optText;
+          optsDiv.appendChild(row);
+        });
+
+        card.appendChild(header);
+        card.appendChild(prompt);
+        card.appendChild(optsDiv);
+        listContainer.appendChild(card);
+      });
+
+      if (matchCount === 0) {
+        listContainer.innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-muted);font-size:1.05rem;">No questions match the selected filter.</div>`;
+      }
+    }
+
+    function filterReview(filter, btnElem) {
+      document.querySelectorAll('.rev-filter-btn').forEach(b => b.classList.remove('active'));
+      btnElem.classList.add('active');
+      renderReviewList(filter);
+    }
+
+    // =========================================================================
+    // KEYBOARD SHORTCUTS
+    // =========================================================================
+    window.addEventListener('keydown', (e) => {
+      // Only active during quiz screen and when modal is not open
+      if (document.getElementById('quiz-screen').classList.contains('hidden')) return;
+      if (!document.getElementById('custom-modal').classList.contains('hidden')) {
+        if (e.key === 'Escape') closeCustomModal();
+        return;
+      }
+
+      const key = e.key;
+      if (['1', '2', '3', '4'].includes(key)) {
+        const optIdx = parseInt(key, 10) - 1;
+        const origIndex = shuffledIndices[currentIndex];
+        const q = rawQuestions[origIndex];
+        if (optIdx < q.opts.length) {
+          handleOptionClick(optIdx);
+        }
+      } else if (key === 'Enter') {
+        const origIndex = shuffledIndices[currentIndex];
+        const state = userState[origIndex];
+        if (!state.submitted && state.selected.length > 0) {
+          submitCurrentAnswer();
+        } else if (currentIndex < rawQuestions.length - 1) {
+          navigateQuestion(1);
+        }
+      } else if (key === 'ArrowLeft') {
+        navigateQuestion(-1);
+      } else if (key === 'ArrowRight') {
+        navigateQuestion(1);
+      } else if (key === 'f' || key === 'F') {
+        toggleFlagCurrentQuestion();
+      }
+    });
+  </script>
+</body>
+</html>

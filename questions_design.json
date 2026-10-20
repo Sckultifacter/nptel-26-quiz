@@ -1,0 +1,1473 @@
+[
+  {
+    "q": "While we talk about the evaluation phases of the computer, _____ is called the modern age of computers.",
+    "type": "single",
+    "opts": [
+      "1985 onwards",
+      "1998 onwards",
+      "2007 onwards",
+      "2011 onwards"
+    ],
+    "ans": [
+      3
+    ]
+  },
+  {
+    "q": "Which among the following is NOT a generic category of users?",
+    "type": "single",
+    "opts": [
+      "Novice",
+      "Super knowledgeable",
+      "Intermittent",
+      "Expert"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "In the Spiral Model, why is the second quadrant crucial for interactive software development?",
+    "type": "single",
+    "opts": [
+      "It defines the UI layout",
+      "It finalizes the system architecture",
+      "It identifies and mitigates usability risks via prototyping",
+      "It handles testing and deployment"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "What does the term 'utility' refer to in the context of usability?",
+    "type": "single",
+    "opts": [
+      "Speed of task completion",
+      "Visual appeal of the design",
+      "Functional support for user needs",
+      "Frequency of feature updates"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "Which one of the following is NOT a computer?",
+    "type": "single",
+    "opts": [
+      "Desktop",
+      "Digital Pedometer",
+      "Smartphone",
+      "None of the above"
+    ],
+    "ans": [
+      3
+    ]
+  },
+  {
+    "q": "Interactive software development is _____ in nature.",
+    "type": "single",
+    "opts": [
+      "sporadic",
+      "iterative",
+      "variable",
+      "discrete"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Which of the following is NOT one of the five quality components of usability proposed by Jacob Nielsen?",
+    "type": "single",
+    "opts": [
+      "Learnability",
+      "Efficiency",
+      "Satisfaction",
+      "Memorization"
+    ],
+    "ans": [
+      3
+    ]
+  },
+  {
+    "q": "Which of the following is NOT a characteristic of the Waterfall model?",
+    "type": "single",
+    "opts": [
+      "Feasibility study",
+      "Learnability study",
+      "System integration and testing",
+      "Maintenance"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "'Identify objectives' and 'customer evaluation and planning' is in the _____ and _____ quadrant of the spiral model respectively.",
+    "type": "single",
+    "opts": [
+      "First, Fourth",
+      "Second, Third",
+      "Third, Fourth",
+      "Fourth, Second"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "Which design approach focuses on what a programmer finds interesting to build?",
+    "type": "single",
+    "opts": [
+      "System-Centered Design",
+      "User-Centered Design",
+      "Utility-Based Design",
+      "Participatory Design"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "Contextual inquiry is also known as _________.",
+    "type": "single",
+    "opts": [
+      "Interview",
+      "Observation",
+      "Semi-structured interview"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "In SRS, functions are not represented as",
+    "type": "single",
+    "opts": [
+      "Function name",
+      "Input",
+      "Output",
+      "Description",
+      "Motivation"
+    ],
+    "ans": [
+      4
+    ]
+  },
+  {
+    "q": "Contextual inquiry can be done in _____ and passive mode.",
+    "type": "single",
+    "opts": [
+      "active",
+      "semi-active",
+      "neutral"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "There are _____ stages in contextual inquiry.",
+    "type": "single",
+    "opts": [
+      "two",
+      "five",
+      "six",
+      "eight"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Which stage in the Contextual Inquiry process involves arranging for recording observations and scripting the procedure?",
+    "type": "single",
+    "opts": [
+      "Plan Stage",
+      "Initiate Stage",
+      "Execute Stage",
+      "Reflect Stage"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "Affinity diagram method consists of _____ steps.",
+    "type": "single",
+    "opts": [
+      "Three",
+      "Two",
+      "Six",
+      "Five"
+    ],
+    "ans": [
+      3
+    ]
+  },
+  {
+    "q": "Usability requirements is one type of _____.",
+    "type": "single",
+    "opts": [
+      "Functional Requirement",
+      "Non-functional requirement"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "What is the primary objective of Contextual Inquiry?",
+    "type": "single",
+    "opts": [
+      "To watch and observe users perform tasks in their natural work setting",
+      "To conduct semi-structured interviews with users",
+      "To develop design recommendations",
+      "To study user behavior using physical note-taking"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "What is the purpose of the 'Reflect' stage in the Contextual Inquiry process?",
+    "type": "single",
+    "opts": [
+      "To contact the authorities for permission",
+      "To analyze the data collected and identify design goals",
+      "To script the procedure and rehearse for observations"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "How long does the Contextual Inquiry process typically continue?",
+    "type": "single",
+    "opts": [
+      "One to two weeks",
+      "One to two hours",
+      "One to two months"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "In SRS document the functions should describe HOW to get the output from the given input.",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "We can also add new functional requirements based on the observations made in contextual inquiry.",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "In user-centered design, we have two concerns: Interface design and",
+    "type": "single",
+    "opts": [
+      "Machine design",
+      "Hardware design",
+      "Code design",
+      "System design"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "The design-prototype-evaluate cycle primarily caters to _______ design.",
+    "type": "single",
+    "opts": [
+      "Interface",
+      "Code",
+      "System"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "Code design can be expressed in natural languages, semi-formal languages and __________.",
+    "type": "single",
+    "opts": [
+      "Informal languages",
+      "Formal languages",
+      "Context sensitive languages"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "DFD is a ________ code design language.",
+    "type": "single",
+    "opts": [
+      "Natural",
+      "Semi-formal",
+      "Informal",
+      "Context sensitive"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Shneiderman proposed _______ rules that covers broad aspects of interactive systems.",
+    "type": "single",
+    "opts": [
+      "Five",
+      "Seven",
+      "Eight",
+      "Nine"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "\"The interface should not force users to remember too many things\" – this statement falls under \"__________\", one of the golden rules proposed by Shneiderman.",
+    "type": "single",
+    "opts": [
+      "Strive for consistency",
+      "Permit easy reversal of actions",
+      "Reduce short-term memory load",
+      "Keep users in control"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "Human interface guidelines for the apple systems are the _______ design guidelines.",
+    "type": "single",
+    "opts": [
+      "Generic",
+      "Specific"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Identification of data structures and algorithms for different modules is done on the _________ phase of code design.",
+    "type": "single",
+    "opts": [
+      "Preliminary (high-level) design",
+      "Detailed design"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Norman's Model of Interaction represents behavior of a user of interactive systems in terms of a series of _____.",
+    "type": "single",
+    "opts": [
+      "actions",
+      "selection",
+      "manipulation"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "There are broadly two stages of interaction execution stage and _____ stage.",
+    "type": "single",
+    "opts": [
+      "design",
+      "evaluation",
+      "interaction"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Perceive system state comes under the _____ stage of interaction.",
+    "type": "single",
+    "opts": [
+      "execution",
+      "design",
+      "evaluation",
+      "interaction"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "Actions we specify to translate intentions may not be supported by the interface leading to gap (gulf) between the first three and the last actions in the execution stage- It is called _____.",
+    "type": "single",
+    "opts": [
+      "The gulf of execution",
+      "The gulf of evaluation",
+      "The gulf of Interaction"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "Particularly in the context of errors during interaction is explained in terms of slips and _____.",
+    "type": "single",
+    "opts": [
+      "error",
+      "mistakes",
+      "human error"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "In a vertical prototype, the entire interface is depicted at the surface level without any functionality.",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Paper mock-ups are the example of ________ prototype.",
+    "type": "single",
+    "opts": [
+      "Low fidelity",
+      "High fidelity",
+      "Medium fidelity"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "There is a requirement of 3-5 member team for the cognitive walkthrough.",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "In a cognitive walkthrough evaluation, evaluators are expected to answer the questions only in \"yes\" or \"no\"",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "In this technique, a human subject believes to interact with an autonomous computer. But, In reality, however, the computer is operated by an \"unseen\" human being. This technique is called_____ approach.",
+    "type": "single",
+    "opts": [
+      "Medium fidelity",
+      "Vertical",
+      "Wizard of Oz",
+      "Incremental"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "How do we evaluate an interface?",
+    "type": "single",
+    "opts": [
+      "by evaluating satisfaction",
+      "by evaluating memorability",
+      "by evaluating usability"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "We need to frame a set of questions (usability issues) for the evaluators before performing a cognitive walkthrough",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "In a heuristic evaluation, the items in the checklist are called ________.",
+    "type": "single",
+    "opts": [
+      "checkbox",
+      "heuristics",
+      "usability issues",
+      "problems"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "There are many ways of collecting user feedback in evaluation with self report methods: __________, can ask them to choose from a list of system attributes ask direct and open-ended questions.",
+    "type": "single",
+    "opts": [
+      "Utter the option",
+      "Rating on a scale"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "ASQ is a ____________.",
+    "type": "single",
+    "opts": [
+      "Post-task questionnaire",
+      "Post-session questionnaire"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "It is generally assumed that an SUS score around _____ percent or higher is desirable",
+    "type": "single",
+    "opts": [
+      "10",
+      "20",
+      "50",
+      "70"
+    ],
+    "ans": [
+      3
+    ]
+  },
+  {
+    "q": "In expert evaluation, the evaluation team should have at least _______ members.",
+    "type": "single",
+    "opts": [
+      "3-5",
+      "4-7",
+      "5-7",
+      "7-9"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "In heuristic evaluation, a system is evaluated with a checklist are called ___ .",
+    "type": "single",
+    "opts": [
+      "Heuristics",
+      "Actions",
+      "Statement"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "What is the full form of SUS",
+    "type": "single",
+    "opts": [
+      "Software usability score",
+      "Software usability scale",
+      "System usability score",
+      "System usability scale"
+    ],
+    "ans": [
+      3
+    ]
+  },
+  {
+    "q": "Which are from the following are the valid prototype evaluation methods",
+    "type": "multi",
+    "opts": [
+      "Cognitive walkthrough",
+      "Affinity diagram",
+      "Heuristic evaluation"
+    ],
+    "ans": [
+      0,
+      2
+    ]
+  },
+  {
+    "q": "Which of the following is NOT a characteristic of Good design",
+    "type": "single",
+    "opts": [
+      "Coverage",
+      "Correctness",
+      "Understandability",
+      "Colorful"
+    ],
+    "ans": [
+      3
+    ]
+  },
+  {
+    "q": "If all functions perform similar operations it falls under _____ cohesion.",
+    "type": "single",
+    "opts": [
+      "Logical",
+      "Temporal",
+      "Procedural",
+      "Sequential"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "If two modules share code, it falls under _______ coupling.",
+    "type": "single",
+    "opts": [
+      "Data",
+      "Control",
+      "Content"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "There are two basic design approaches: function oriented and _____ oriented.",
+    "type": "single",
+    "opts": [
+      "Logic",
+      "Folder",
+      "Object",
+      "Class"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "Basic components of ER diagram are: Entity, ____ and Relationship",
+    "type": "single",
+    "opts": [
+      "Object",
+      "User",
+      "Attribute",
+      "Class"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "Null attributes are used when:",
+    "type": "single",
+    "opts": [
+      "An entity does not have a value for an attribute",
+      "A value needs to be derived from other attributes or entities"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "There are four types of relationships in ER diagram: one-to-one, one-to-many, many-to-one and _____.",
+    "type": "single",
+    "opts": [
+      "Many-to-binary",
+      "Many-to-many",
+      "Binary-to-many",
+      "Binary-to-one"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Which of the following is/are the type of cohesion?",
+    "type": "multi",
+    "opts": [
+      "Temporal",
+      "Functional",
+      "Content",
+      "All of the above"
+    ],
+    "ans": [
+      0,
+      1
+    ]
+  },
+  {
+    "q": "Which one from the following are related with between modules?",
+    "type": "single",
+    "opts": [
+      "Cohesion",
+      "Coupling",
+      "Both"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "What is the full form of the DFD",
+    "type": "single",
+    "opts": [
+      "Data flow design",
+      "Data flow decision",
+      "Data flow development",
+      "Data flow diagram"
+    ],
+    "ans": [
+      3
+    ]
+  },
+  {
+    "q": "In functional design approach we think of the system as provider of a set of \"services\" represented as _____.",
+    "type": "single",
+    "opts": [
+      "Data",
+      "Functions",
+      "Objects"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "In \"Object Oriented Design approach\", we do not consider \"services\" offered by system.",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "A class contains attributes and _________.",
+    "type": "single",
+    "opts": [
+      "Data",
+      "Operations",
+      "Objects"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Attribute indicates nature of data that an object can contain.",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "Full form of OOA is:",
+    "type": "single",
+    "opts": [
+      "object oriented assignment",
+      "object oriented assistance",
+      "object oriented analysis",
+      "object oriented attributes"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "_____ effectively denotes the behavior of class.",
+    "type": "single",
+    "opts": [
+      "Data",
+      "Operations",
+      "Objects",
+      "Attributes"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "UML is a language to represent",
+    "type": "single",
+    "opts": [
+      "OOP",
+      "OOA",
+      "OOD"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "UML is a design methodology",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Implementation view can be captured using ______.",
+    "type": "single",
+    "opts": [
+      "Deployment diagram",
+      "Component diagram",
+      "Class diagram",
+      "Use case diagram"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "_______ objects normally hold information (e.g. book, book registers etc).",
+    "type": "single",
+    "opts": [
+      "Boundary",
+      "Controller",
+      "Entity"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "Following standard coding guidelines helps to improve _____.",
+    "type": "single",
+    "opts": [
+      "Readability only",
+      "Understandability only",
+      "Teamwork only",
+      "Readability, understandability, and teamwork"
+    ],
+    "ans": [
+      3
+    ]
+  },
+  {
+    "q": "A function should have no longer than ____ lines of code.",
+    "type": "single",
+    "opts": [
+      "5",
+      "16",
+      "10",
+      "8"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "What are some things to avoid when writing code? (Choose all that apply)",
+    "type": "multi",
+    "opts": [
+      "Using lengthy functions",
+      "Using the same identifier for multiple purposes",
+      "Using 'goto' (branching) statements indiscriminately",
+      "Using proper indentation"
+    ],
+    "ans": [
+      0,
+      1,
+      2
+    ]
+  },
+  {
+    "q": "Two broad categories of code testing methods are review-based method and ________ method.",
+    "type": "single",
+    "opts": [
+      "Manual testing",
+      "Execution-based"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "What are the two common methods for review-based testing? (Choose all that apply)",
+    "type": "multi",
+    "opts": [
+      "Code inspection",
+      "Code walkthrough",
+      "Unit testing"
+    ],
+    "ans": [
+      0,
+      1
+    ]
+  },
+  {
+    "q": "White-box testing refers to designing test cases using knowledge of internal structure of the software.",
+    "type": "single",
+    "opts": [
+      "True",
+      "false"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "How many members should be present in a code walkthrough team?",
+    "type": "single",
+    "opts": [
+      "2-3 members",
+      "3-5 members",
+      "5-7 members",
+      "7-10 members"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Which of the following code testing method requires simulation of code execution by hand?",
+    "type": "single",
+    "opts": [
+      "Code walkthrough",
+      "Code inspection",
+      "Black box testing",
+      "White box testing"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "Uninitialized variable is one of the common errors in programming that can be identified through code inspection.",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "Which of the following is not required to perform black box testing?",
+    "type": "single",
+    "opts": [
+      "Equivalence class partitioning",
+      "Boundary value analysis",
+      "Test suite creation",
+      "Knowledge of the internal structure of the code"
+    ],
+    "ans": [
+      3
+    ]
+  },
+  {
+    "q": "Set of all test cases with which a given software is to be tested is known as _______.",
+    "type": "single",
+    "opts": [
+      "Testcase",
+      "Test suite"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Randomly selected test cases do not necessarily contribute to significance of test suite.",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "In black box testing the two main approaches to design test vases are: Equivalence class partitioning and ___________.",
+    "type": "single",
+    "opts": [
+      "Structural analysis",
+      "Boundary value analysis",
+      "Equivalence class analysis",
+      "System analysis"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Testing code with any ____ value(s) of an equivalence class is as good as testing with ALL input values belonging to that class.",
+    "type": "single",
+    "opts": [
+      "One",
+      "Two",
+      "Five",
+      "Four"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "In black box testing, domain of input values partitioned into sets, each sets are called _______.",
+    "type": "single",
+    "opts": [
+      "Partition class",
+      "Equivalence class",
+      "Program class"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Which is/are from the following are valid review based testing",
+    "type": "multi",
+    "opts": [
+      "Code walkthrough",
+      "Code inspection",
+      "Code analysis",
+      "Code assessment"
+    ],
+    "ans": [
+      0,
+      1
+    ]
+  },
+  {
+    "q": "Set of all test cases with which a given software is to be tested is called test ____",
+    "type": "single",
+    "opts": [
+      "Question",
+      "Questionnaire",
+      "Suite"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "In Black-box testing, the test cases are based on",
+    "type": "multi",
+    "opts": [
+      "input",
+      "knowledge of design",
+      "output",
+      "knowledge of code"
+    ],
+    "ans": [
+      0,
+      2
+    ]
+  },
+  {
+    "q": "Domain of input values partitioned into set is called equivalence class",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "Functional testing is related to",
+    "type": "single",
+    "opts": [
+      "Black-box testing",
+      "White-box testing"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "To do a white-box testing, knowledge of internal structure is required.",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "To understand white-box testing strategies, program (flow) visualization helps. To visualize the program we can take help of _______.",
+    "type": "single",
+    "opts": [
+      "CFG",
+      "DFD",
+      "ERD",
+      "Class diagram"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "To construct a CFG we assign numbers to all statements of the program, create a node in the CFG for each numbered statement and__________.",
+    "type": "single",
+    "opts": [
+      "Complement the CFG",
+      "Add edges",
+      "Sort the nodes"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Branch coverage guarantees statement coverage.",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "In path coverage, test cases should ensure all ________ in the code executed at least once.",
+    "type": "single",
+    "opts": [
+      "Linearly independent paths",
+      "Linearly dependent paths"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "To compute cyclomatic complexity, we can use _________ where E=number of edges, N=number of nodes.",
+    "type": "single",
+    "opts": [
+      "E-N+2",
+      "E-N+1",
+      "E+N-2",
+      "E+N-1"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "Three main stages of system testing is alpha testing, beta testing and _______.",
+    "type": "single",
+    "opts": [
+      "Gama testing",
+      "Sigma testing",
+      "Acceptance testing",
+      "Omega testing"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "Volume testing tests system performance for _____ input.",
+    "type": "single",
+    "opts": [
+      "Small",
+      "Large"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "There are ____ stages of empirical research.",
+    "type": "single",
+    "opts": [
+      "Three",
+      "Four",
+      "Five",
+      "Six"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Data we get from observation is _______ data.",
+    "type": "single",
+    "opts": [
+      "Reflective",
+      "Empirical",
+      "Authoritative",
+      "Experiential"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "When we perform a controlled experiment to collect and analyze data on user behavior, the entire process is known as _________.",
+    "type": "single",
+    "opts": [
+      "programmable research",
+      "hypothetical research",
+      "empirical research",
+      "theoretical research"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "There are broadly ________ stages of empirical research?",
+    "type": "single",
+    "opts": [
+      "Two",
+      "three",
+      "four",
+      "five"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "Suppose we formed two research questions: RQ1: Is the new technique good? RQ2: Is our text input interface better than the text input interface provided by, say, MS Word? RQ3: Does the new interface let me enter text \"faster\" than MS Word? We call RQ3 _________ and RQ1 as _________.",
+    "type": "single",
+    "opts": [
+      "testable, non-testable",
+      "alternative hypothesis, null hypothesis"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "When we form a hypothesis, essentially stating that the test condition is not going to affect the outcome (judgment). This hypothesis is called __________.",
+    "type": "single",
+    "opts": [
+      "null hypothesis",
+      "alternative hypothesis"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "In __________, we assign some (arbitrary) codes to attributes of observational data.",
+    "type": "single",
+    "opts": [
+      "nominal",
+      "ordinal",
+      "interval",
+      "ratio"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "Recording data from a thermometer is an example of interval scaled data.",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "__________ are variables that influence both the independent and dependent variables in a study, potentially leading to incorrect conclusions about the relationship between the two.",
+    "type": "single",
+    "opts": [
+      "Dependent variables",
+      "Independent variables",
+      "Confounding variables",
+      "Control variables"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "For any pilot study (or small-scale studies), 5 is probably a good number.",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "To draw reliable conclusions from empirical data, we should use between __________ and __________ participants.",
+    "type": "single",
+    "opts": [
+      "1, 5",
+      "2, 5",
+      "12, 25",
+      "10, 12"
+    ],
+    "ans": [
+      2
+    ]
+  },
+  {
+    "q": "When we distribute the tasks to participants in the way explained above, we call the study as _________.",
+    "type": "single",
+    "opts": [
+      "between-subject",
+      "within-subject",
+      "uni-subject",
+      "center-subject"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "With the significance test, we try to __________ the null hypothesis.",
+    "type": "single",
+    "opts": [
+      "Accept",
+      "Refute"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Type I error is also known as __________.",
+    "type": "single",
+    "opts": [
+      "False positive",
+      "False negative",
+      "True positive",
+      "True negative"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "t-statistic is the ONLY way to test for statistical significance.",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "There are broadly two categories of the techniques for significance test: __________ and __________.",
+    "type": "single",
+    "opts": [
+      "Parametric and Non-parametric",
+      "t-test and non t-test"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "Project planning involves estimation of Project size, Cost, Duration and Effort.",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "COCOMO stands for _____________.",
+    "type": "single",
+    "opts": [
+      "Conducive Cost Estimation Model",
+      "Constructive Cost Estimation Model",
+      "Constructive Category Estimation Model",
+      "Conducive Category Estimation Model"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "According to Boehm, software cost estimation should be done through _____________ stages.",
+    "type": "single",
+    "opts": [
+      "Two",
+      "Three",
+      "Four",
+      "Five"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "Agile development ensure quick turn-around of projects",
+    "type": "single",
+    "opts": [
+      "True",
+      "False"
+    ],
+    "ans": [
+      0
+    ]
+  },
+  {
+    "q": "Scrum is a _________ method.",
+    "type": "single",
+    "opts": [
+      "Traditional SDLC",
+      "Agile"
+    ],
+    "ans": [
+      1
+    ]
+  },
+  {
+    "q": "In a Gantt chart the length is proportional to ________ for activity",
+    "type": "single",
+    "opts": [
+      "Duration planned",
+      "Effort",
+      "Cost"
+    ],
+    "ans": [
+      0
+    ]
+  }
+]

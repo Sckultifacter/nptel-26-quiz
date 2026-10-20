@@ -19,3 +19,5 @@ This repository is configured to be hosted directly using GitHub Pages:
 1. Go to **Settings** > **Pages** in this GitHub repository.
 2. Under **Build and deployment** > **Branch**, select `main` (root) and click **Save**.
 3. Your quiz will be live at `https://<username>.github.io/<repo-name>/`.
+
+link - https://sckultifacter.github.io/nptel-26-quiz/

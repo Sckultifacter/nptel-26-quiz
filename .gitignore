@@ -4,4 +4,6 @@ ob_images/
 node_modules/
 build_quiz.js
 parse_and_validate.js
+assemble_complete_site.js
+build_site_with_notes.js
 *.py
